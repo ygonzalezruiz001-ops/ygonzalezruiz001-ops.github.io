@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyliion | Containerized Energy Generator Frame</title>
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#141414;
+      --text:#f2f2f2;
+      --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:inherit}
+    .wrap{max-width:900px;margin:0 auto;padding:24px 18px 80px}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px)}
+    .brand{font-weight:700;letter-spacing:0.3px}
+    .nav a{text-decoration:none;color:var(--muted);margin-left:14px;font-size:14px}
+    .nav a:hover{color:var(--text)}
+    h1{font-size:34px;margin:26px 0 8px;line-height:1.15}
+    .sub{color:var(--muted);margin:0 0 18px}
+    .heroImg{margin:18px 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+    .heroImg img{width:100%;height:320px;object-fit:cover;display:block}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
+    .card h2{font-size:15px;margin:0 0 10px;text-transform:uppercase;letter-spacing:0.12em}
+    .card p,.card li{color:var(--muted);font-size:14px}
+    ul{margin:8px 0 0;padding-left:18px}
+    .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+    .kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#101010}
+    .kpi b{display:block;color:var(--text);font-size:16px;margin-bottom:4px}
+    .btn{display:inline-block;margin-top:14px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);text-decoration:none;background:#151515}
+    .btn:hover{background:var(--hover)}
+    @media(max-width:800px){.kpis{grid-template-columns:1fr}.heroImg img{height:220px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="nav">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="hyliion.html">Hyliion</a>
+        <a href="capella.html">Hydrogen</a>
+        <a href="vascular.html">Rotovap</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </div>
+
+    <h1>Containerized Energy Generator Frame</h1>
+    <p class="sub">Hyliion • Aug 2025 – Present • Structural Development & Weldment Design</p>
+
+    <div class="heroImg">
+      <!-- Replace with your real image -->
+      <img src="assets/hyliion.jpg" alt="Hyliion containerized generator frame">
+    </div>
+
+    <div class="card">
+      <h2>Impact Snapshot</h2>
+      <div class="kpis">
+        <div class="kpi"><b>~40 parts eliminated</b><span>~7% reduction from ~600-part baseline</span></div>
+        <div class="kpi"><b>3/8&quot; → 1/8&quot;</b><span>Reduced C-channel thickness where margins allowed</span></div>
+        <div class="kpi"><b>8 Hz → 31 Hz</b><span>Raised minimum natural frequency via bracing/gussets</span></div>
+        <div class="kpi"><b>AWS D1.1 + ANSYS</b><span>Weld stress checks using FEA-extracted forces/moments</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        Leading structural design and analysis for containerized megawatt-scale energy generator systems from concept through detailed design review.
+        Responsible for frame architecture optimization, AWS D1.1 weld stress analysis, supplier coordination, and DFM.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Structural Optimization</h2>
+      <ul>
+        <li>Applied “every part must earn its keep” philosophy to remove non-load-carrying components.</li>
+        <li>Validated load paths with ANSYS using von Mises + strain energy reviews under 5g transport and 3g operational cases.</li>
+        <li>Reran models after removals to ensure margins and stiffness requirements were preserved.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Dynamics / Resonance Avoidance</h2>
+      <ul>
+        <li>Raised minimum natural frequency from 8 Hz to 31 Hz via targeted X-bracing and gusseting.</li>
+        <li>Goal: avoid rotating equipment excitation frequencies to prevent resonance.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Weld Analysis + DFM</h2>
+      <ul>
+        <li>Performed AWS D1.1 weld stress analysis using forces/moments extracted from FEA.</li>
+        <li>Redesigned load paths using stiffeners instead of simply increasing weld size (cost/weight control).</li>
+        <li>Coordinated with fabrication partner to confirm CJP feasibility, access, and realistic shop processes.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Supplier Coordination</h2>
+      <ul>
+        <li>Released drawings, cut lists, and material specs with clear tolerances and acceptance expectations.</li>
+        <li>Evaluated alternate suppliers (lead time, cost, certifications) and managed delivery schedules.</li>
+      </ul>
+    </div>
+
+    <a class="btn" href="index.html">← Back to Home</a>
+
+  </div>
+</body>
+</html>
