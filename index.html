@@ -1,253 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical Engineer focused on product development, manufacturing, and FEA. Portfolio, projects, and contact." />
-  <style>
-    :root{
-      --bg:#0b1220;
-      --card:#0f1a2e;
-      --text:#e8eefc;
-      --muted:#a9b7d6;
-      --line:#20304e;
-      --accent:#2f6bff;
-      --accent2:#59d4ff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% 0%, #122246 0%, var(--bg) 55%),
-                  radial-gradient(900px 500px at 90% 10%, #0c2a35 0%, var(--bg) 60%);
-      color:var(--text);
-      line-height:1.5;
-    }
-    a{color:inherit}
-    .wrap{max-width:1050px; margin:0 auto; padding:28px 18px 70px}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px 0 22px; border-bottom:1px solid rgba(255,255,255,0.06);
-      position:sticky; top:0; backdrop-filter: blur(10px);
-      background: rgba(11,18,32,0.6);
-      z-index:10;
-    }
-    .brand{font-weight:700; letter-spacing:0.2px}
-    .nav a{ text-decoration:none; color:var(--muted); margin-left:16px; font-size:14px}
-    .nav a:hover{color:var(--text)}
-    .hero{padding:56px 0 28px}
-    .kicker{color:var(--muted); font-size:14px; margin:0 0 10px}
-    h1{font-size:44px; margin:0 0 10px; line-height:1.1}
-    .subtitle{color:var(--muted); font-size:18px; margin:0 0 18px; max-width:820px}
-    .btns{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.12);
-      text-decoration:none; font-weight:600; font-size:14px;
-      background: rgba(255,255,255,0.03);
-    }
-    .btn.primary{background: linear-gradient(135deg, var(--accent) 0%, #1e49ff 100%); border-color:transparent}
-    .btn:hover{transform: translateY(-1px)}
-    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; margin-top:22px}
-    .card{
-      background: rgba(15,26,46,0.78);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:16px;
-      padding:18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-    .card h3{margin:0 0 6px; font-size:16px}
-    .card p{margin:0; color:var(--muted); font-size:14px}
-    .stat{grid-column: span 4}
-    .section{margin-top:34px}
-    .section h2{font-size:18px; margin:0 0 12px}
-    .projects{display:grid; grid-template-columns: repeat(12,1fr); gap:14px}
-    .proj{grid-column: span 6; padding:0; overflow:hidden}
-    .proj .inner{padding:16px 16px 18px}
-    .thumb{
-      height:170px;
-      background: linear-gradient(135deg, rgba(47,107,255,0.25) 0%, rgba(89,212,255,0.10) 100%);
-      border-bottom:1px solid rgba(255,255,255,0.07);
-      display:flex; align-items:center; justify-content:center;
-      color:rgba(255,255,255,0.55);
-      font-size:13px;
-    }
-    .proj ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:14px}
-    .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
-    .tag{
-      font-size:12px; color:#cfe0ff;
-      border:1px solid rgba(89,212,255,0.25);
-      background: rgba(89,212,255,0.08);
-      padding:5px 9px; border-radius:999px;
-    }
-    .skills{display:grid; grid-template-columns: repeat(12,1fr); gap:14px}
-    .skills .card{grid-column: span 4}
-    .footer{
-      margin-top:44px;
-      padding-top:18px;
-      border-top:1px solid rgba(255,255,255,0.08);
-      color:var(--muted);
-      font-size:14px;
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    @media (max-width: 900px){
-      h1{font-size:36px}
-      .stat{grid-column: span 12}
-      .proj{grid-column: span 12}
-      .skills .card{grid-column: span 12}
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
+<meta name="description" content="Mechanical Engineer focused on structural design, manufacturing, and FEA." />
+
+<style>
+:root{
+  --bg:#0a0a0a;
+  --card:#141414;
+  --text:#f2f2f2;
+  --muted:#a0a0a0;
+  --line:#262626;
+  --accent:#d6d6d6;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+.wrap{
+  max-width:1050px;
+  margin:0 auto;
+  padding:40px 20px 80px;
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.nav a{
+  text-decoration:none;
+  color:var(--muted);
+  margin-left:18px;
+  font-size:14px;
+}
+
+.nav a:hover{
+  color:var(--text);
+}
+
+.brand{
+  font-weight:600;
+  letter-spacing:0.5px;
+}
+
+.hero{
+  padding:80px 0 60px;
+}
+
+.hero h1{
+  font-size:46px;
+  margin:0 0 14px;
+  font-weight:600;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:18px;
+  max-width:700px;
+}
+
+.btns{
+  margin-top:24px;
+  display:flex;
+  gap:14px;
+}
+
+.btn{
+  padding:12px 18px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  text-decoration:none;
+  font-weight:500;
+  font-size:14px;
+  color:var(--text);
+  background:var(--card);
+  transition:all 0.2s ease;
+}
+
+.btn:hover{
+  background:#1f1f1f;
+  transform:translateY(-2px);
+}
+
+.section{
+  margin-top:60px;
+}
+
+.section h2{
+  font-size:20px;
+  margin-bottom:18px;
+  font-weight:600;
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  transition:all 0.2s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#3a3a3a;
+}
+
+.thumb{
+  height:180px;
+  overflow:hidden;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.3s ease;
+}
+
+.card:hover .thumb img{
+  transform:scale(1.05);
+}
+
+.card-content{
+  padding:18px;
+}
+
+.card-content h3{
+  margin:0 0 6px;
+  font-size:16px;
+}
+
+.card-content p{
+  color:var(--muted);
+  font-size:14px;
+  margin:0 0 10px;
+}
+
+.card-content ul{
+  padding-left:18px;
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.skills{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.skill-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+}
+
+.skill-card h3{
+  margin:0 0 8px;
+  font-size:15px;
+}
+
+.skill-card p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.footer{
+  margin-top:70px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+}
+
+@media(max-width:900px){
+  .projects{grid-template-columns:1fr;}
+  .skills{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">Christian Gonzalez Ruiz</div>
-      <div>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+<div class="wrap">
+
+<div class="nav">
+  <div class="brand">Christian Gonzalez Ruiz</div>
+  <div>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<section class="hero">
+  <h1>Mechanical Engineer | Structural Design & FEA</h1>
+  <p class="subtitle">
+    I design and validate mechanical systems with a focus on structural architecture, manufacturability, and simulation-driven engineering.
+  </p>
+
+  <div class="btns">
+    <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
+    <a class="btn" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+    <a class="btn" href="mailto:youremail@email.com">Email</a>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2>Selected Projects</h2>
+
+  <div class="projects">
+
+    <div class="card">
+      <div class="thumb">
+        <a href="assets/project1.jpg" target="_blank">
+          <img src="assets/project1.jpg" alt="Project 1">
+        </a>
+      </div>
+      <div class="card-content">
+        <h3>Project Title 1</h3>
+        <p>Brief description of the problem and scope.</p>
+        <ul>
+          <li>Owned structural architecture and FEA validation</li>
+          <li>Performed static & modal analysis</li>
+          <li>Reduced deflection by XX%</li>
+        </ul>
       </div>
     </div>
 
-    <section class="hero">
-      <p class="kicker">Mechanical Engineer • Product Development • Manufacturing • FEA</p>
-      <h1>Building robust hardware from concept → analysis → build.</h1>
-      <p class="subtitle">
-        I design and validate mechanical systems with a focus on structural architecture, manufacturability, and simulation-driven iteration.
-        Here are selected projects and results.
-      </p>
-
-      <div class="btns">
-        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-        <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="mailto:youremail@email.com">Email</a>
+    <div class="card">
+      <div class="thumb">
+        <a href="assets/project2.jpg" target="_blank">
+          <img src="assets/project2.jpg" alt="Project 2">
+        </a>
       </div>
-
-      <div class="grid">
-        <div class="card stat">
-          <h3>FEA & Structural Design</h3>
-          <p>Static/modal/buckling, weld sizing, stiffness tuning, design iteration.</p>
-        </div>
-        <div class="card stat">
-          <h3>Manufacturing & DFM</h3>
-          <p>Sheet metal, weldments, tolerance thinking, supplier-ready drawings.</p>
-        </div>
-        <div class="card stat">
-          <h3>Automation Mindset</h3>
-          <p>Python workflows to reduce manual work and speed up engineering cycles.</p>
-        </div>
+      <div class="card-content">
+        <h3>Project Title 2</h3>
+        <p>Brief description of engineering challenge.</p>
+        <ul>
+          <li>Designed weldment assemblies</li>
+          <li>Improved manufacturability</li>
+          <li>Delivered production-ready drawings</li>
+        </ul>
       </div>
-    </section>
+    </div>
 
-    <section id="projects" class="section">
-      <h2>Selected Projects</h2>
+  </div>
+</section>
 
-      <div class="projects">
-        <article class="card proj">
-          <div class="thumb">Add image later: assets/project1.jpg</div>
-          <div class="inner">
-            <h3>Project Title 1 — One-line result</h3>
-            <p>1–2 sentence overview of the problem and why it mattered.</p>
-            <ul>
-              <li>What you owned (design scope / subsystem).</li>
-              <li>Analysis or testing you performed (FEA, hand calcs, validation).</li>
-              <li>Result with numbers if possible (weight saved, deflection reduced, time saved).</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag">ANSYS</span><span class="tag">NX</span><span class="tag">Weldments</span>
-            </div>
-          </div>
-        </article>
+<section id="skills" class="section">
+  <h2>Skills</h2>
 
-        <article class="card proj">
-          <div class="thumb">Add image later: assets/project2.jpg</div>
-          <div class="inner">
-            <h3>Project Title 2 — One-line result</h3>
-            <p>1–2 sentence overview of the problem and why it mattered.</p>
-            <ul>
-              <li>What you owned (design scope / subsystem).</li>
-              <li>Analysis or testing you performed.</li>
-              <li>Result with numbers if possible.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag">FEA</span><span class="tag">DFM</span><span class="tag">Drawings</span>
-            </div>
-          </div>
-        </article>
+  <div class="skills">
+    <div class="skill-card">
+      <h3>Simulation</h3>
+      <p>Static, modal, buckling, load paths, boundary conditions.</p>
+    </div>
 
-        <article class="card proj">
-          <div class="thumb">Add image later: assets/project3.jpg</div>
-          <div class="inner">
-            <h3>Project Title 3 — One-line result</h3>
-            <p>1–2 sentence overview of the problem and why it mattered.</p>
-            <ul>
-              <li>What you owned.</li>
-              <li>Analysis / testing you performed.</li>
-              <li>Result with numbers if possible.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag">Statics</span><span class="tag">Vibration</span><span class="tag">Packaging</span>
-            </div>
-          </div>
-        </article>
+    <div class="skill-card">
+      <h3>Design</h3>
+      <p>Weldments, sheet metal, frames, structural systems.</p>
+    </div>
 
-        <article class="card proj">
-          <div class="thumb">Add image later: assets/project4.jpg</div>
-          <div class="inner">
-            <h3>Project Title 4 — One-line result</h3>
-            <p>1–2 sentence overview of the problem and why it mattered.</p>
-            <ul>
-              <li>What you owned.</li>
-              <li>Analysis / testing you performed.</li>
-              <li>Result with numbers if possible.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag">Automation</span><span class="tag">Python</span><span class="tag">Tooling</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="card">
-          <h3>Simulation</h3>
-          <p>Static, modal, buckling, load paths, boundary conditions, mesh strategy.</p>
-        </div>
-        <div class="card">
-          <h3>Design</h3>
-          <p>Weldments, sheet metal, brackets, frames, packaging, interface control.</p>
-        </div>
-        <div class="card">
-          <h3>Tools</h3>
-          <p>ANSYS • NX • GD&T • drawings • Python automation • Excel.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <div class="card">
-        <p style="margin:0; color: var(--muted);">
-          Email: <a href="mailto:youremail@email.com">youremail@email.com</a><br/>
-          LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener">Add your link</a><br/>
-          GitHub: <a href="https://github.com/ygonzalezruiz001-ops" target="_blank" rel="noopener">ygonzalezruiz001-ops</a>
-        </p>
-      </div>
-    </section>
-
-    <div class="footer">
-      <div>© <span id="year"></span> Christian Gonzalez Ruiz</div>
-      <div>Built with GitHub Pages</div>
+    <div class="skill-card">
+      <h3>Tools</h3>
+      <p>ANSYS • NX • GD&T • Python • Manufacturing drawings</p>
     </div>
   </div>
+</section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:youremail@email.com">youremail@email.com</a></p>
+</section>
+
+<div class="footer">
+© <span id="year"></span> Christian Gonzalez Ruiz — Built with GitHub Pages
+</div>
+
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
-
