@@ -1,308 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
-<meta name="description" content="Mechanical Engineer focused on structural design, manufacturing, and FEA." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
+  <meta name="description" content="Mechanical Engineer focused on structural design, manufacturing, and FEA. Portfolio, projects, and writing." />
 
-<style>
-:root{
-  --bg:#0a0a0a;
-  --card:#141414;
-  --text:#f2f2f2;
-  --muted:#a0a0a0;
-  --line:#262626;
-  --accent:#d6d6d6;
-}
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#141414;
+      --card2:#101010;
+      --text:#f2f2f2;
+      --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+      --accent:#d6d6d6;
+      --chipbg:#0f0f0f;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px; margin:0 auto; padding:34px 18px 80px}
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-}
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 18px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,10,0.75);
+      z-index:10;
+    }
+    .brand{font-weight:650; letter-spacing:0.4px}
+    .nav a{
+      text-decoration:none; color:var(--muted);
+      margin-left:16px; font-size:14px;
+    }
+    .nav a:hover{color:var(--text)}
 
-.wrap{
-  max-width:1050px;
-  margin:0 auto;
-  padding:40px 20px 80px;
-}
+    /* Hero */
+    .hero{padding:56px 0 26px}
+    h1{font-size:44px; margin:0 0 10px; line-height:1.1; font-weight:700}
+    .kicker{color:var(--muted); font-size:14px; margin:0 0 10px}
+    .subtitle{color:var(--muted); font-size:18px; margin:0; max-width:820px}
 
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--line);
-}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:10px;
+      border:1px solid var(--line);
+      text-decoration:none; font-weight:600; font-size:14px;
+      background: var(--card);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: var(--hover)}
+    .btn.primary{
+      background: linear-gradient(180deg, #1b1b1b 0%, #121212 100%);
+      border-color:#333;
+    }
 
-.nav a{
-  text-decoration:none;
-  color:var(--muted);
-  margin-left:18px;
-  font-size:14px;
-}
+    /* Sections */
+    .section{margin-top:36px}
+    .section h2{font-size:18px; margin:0 0 12px; font-weight:700; letter-spacing:0.2px}
+    .section p{color:var(--muted); margin:0}
 
-.nav a:hover{
-  color:var(--text);
-}
+    /* Project grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .card{
+      grid-column: span 6;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    }
+    .thumb{
+      height:180px;
+      background: var(--card2);
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(255,255,255,0.45);
+      font-size:13px;
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform 0.25s ease;
+      display:block;
+    }
+    .thumb a:hover img{transform: scale(1.04)}
+    .content{padding:16px 16px 18px}
+    .titleRow{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .content h3{margin:0 0 6px; font-size:16px}
+    .meta{color:var(--muted); font-size:13px; margin:0 0 10px}
+    .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:14px}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      font-size:12px; color:var(--accent);
+      border:1px solid #333;
+      background: var(--chipbg);
+      padding:5px 9px; border-radius:999px;
+    }
 
-.brand{
-  font-weight:600;
-  letter-spacing:0.5px;
-}
+    /* Details (expand) */
+    details{
+      margin-top:14px;
+      border-top:1px solid var(--line);
+      padding-top:12px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:650;
+      font-size:14px;
+      color: var(--text);
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .summaryHint{color:var(--muted); font-weight:500; margin-left:8px; font-size:13px}
+    .detailBody{
+      margin-top:10px;
+      color: var(--muted);
+      font-size:14px;
+    }
+    .detailBody h4{
+      margin:14px 0 8px;
+      font-size:13px;
+      letter-spacing:0.2px;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+    .detailBody ul{margin:6px 0 0; padding-left:18px}
+    .detailBody code{
+      background:#0f0f0f; border:1px solid #2a2a2a; padding:2px 6px; border-radius:6px;
+      color:#e6e6e6;
+    }
 
-.hero{
-  padding:80px 0 60px;
-}
+    /* Skills + Contact */
+    .skillsGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .skill{
+      grid-column: span 4;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+    }
+    .skill h3{margin:0 0 6px; font-size:15px}
+    .skill p{margin:0; color:var(--muted); font-size:14px}
 
-.hero h1{
-  font-size:46px;
-  margin:0 0 14px;
-  font-weight:600;
-}
+    .contactCard{
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+    }
 
-.subtitle{
-  color:var(--muted);
-  font-size:18px;
-  max-width:700px;
-}
+    .footer{
+      margin-top:50px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
 
-.btns{
-  margin-top:24px;
-  display:flex;
-  gap:14px;
-}
-
-.btn{
-  padding:12px 18px;
-  border-radius:8px;
-  border:1px solid var(--line);
-  text-decoration:none;
-  font-weight:500;
-  font-size:14px;
-  color:var(--text);
-  background:var(--card);
-  transition:all 0.2s ease;
-}
-
-.btn:hover{
-  background:#1f1f1f;
-  transform:translateY(-2px);
-}
-
-.section{
-  margin-top:60px;
-}
-
-.section h2{
-  font-size:20px;
-  margin-bottom:18px;
-  font-weight:600;
-}
-
-.projects{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  transition:all 0.2s ease;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  border-color:#3a3a3a;
-}
-
-.thumb{
-  height:180px;
-  overflow:hidden;
-}
-
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform 0.3s ease;
-}
-
-.card:hover .thumb img{
-  transform:scale(1.05);
-}
-
-.card-content{
-  padding:18px;
-}
-
-.card-content h3{
-  margin:0 0 6px;
-  font-size:16px;
-}
-
-.card-content p{
-  color:var(--muted);
-  font-size:14px;
-  margin:0 0 10px;
-}
-
-.card-content ul{
-  padding-left:18px;
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.skills{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.skill-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:18px;
-}
-
-.skill-card h3{
-  margin:0 0 8px;
-  font-size:15px;
-}
-
-.skill-card p{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.footer{
-  margin-top:70px;
-  padding-top:20px;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:13px;
-  text-align:center;
-}
-
-@media(max-width:900px){
-  .projects{grid-template-columns:1fr;}
-  .skills{grid-template-columns:1fr;}
-  .hero h1{font-size:36px;}
-}
-</style>
+    @media(max-width: 900px){
+      h1{font-size:34px}
+      .card{grid-column: span 12}
+      .skill{grid-column: span 12}
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
-
-<div class="nav">
-  <div class="brand">Christian Gonzalez Ruiz</div>
-  <div>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div>
-
-<section class="hero">
-  <h1>Mechanical Engineer | Structural Design & FEA</h1>
-  <p class="subtitle">
-    I design and validate mechanical systems with a focus on structural architecture, manufacturability, and simulation-driven engineering.
-  </p>
-
-  <div class="btns">
-    <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
-    <a class="btn" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-    <a class="btn" href="mailto:youremail@email.com">Email</a>
-  </div>
-</section>
-
-<section id="projects" class="section">
-  <h2>Selected Projects</h2>
-
-  <div class="projects">
-
-    <div class="card">
-      <div class="thumb">
-        <a href="assets/project1.jpg" target="_blank">
-          <img src="assets/project1.jpg" alt="Project 1">
-        </a>
-      </div>
-      <div class="card-content">
-        <h3>Project Title 1</h3>
-        <p>Brief description of the problem and scope.</p>
-        <ul>
-          <li>Owned structural architecture and FEA validation</li>
-          <li>Performed static & modal analysis</li>
-          <li>Reduced deflection by XX%</li>
-        </ul>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
 
-    <div class="card">
-      <div class="thumb">
-        <a href="assets/project2.jpg" target="_blank">
-          <img src="assets/project2.jpg" alt="Project 2">
-        </a>
+    <section class="hero">
+      <p class="kicker">Mechanical Engineer • Structural Systems • Manufacturing • FEA</p>
+      <h1>Designing robust hardware with simulation + manufacturing reality.</h1>
+      <p class="subtitle">
+        I build structural systems, validate with ANSYS and hand calcs, and design with DFM and supplier constraints in mind.
+        Below are selected projects with expandable technical details.
+      </p>
+
+      <div class="btns">
+        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+        <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:youremail@email.com">Email</a>
       </div>
-      <div class="card-content">
-        <h3>Project Title 2</h3>
-        <p>Brief description of engineering challenge.</p>
-        <ul>
-          <li>Designed weldment assemblies</li>
-          <li>Improved manufacturability</li>
-          <li>Delivered production-ready drawings</li>
-        </ul>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Selected Projects</h2>
+      <p>Skim the highlights. Expand for full technical details.</p>
+
+      <div class="grid">
+        <!-- HYLIION -->
+        <article class="card">
+          <div class="thumb">
+            <!-- Replace assets/hyliion.jpg with your real image -->
+            <a href="assets/hyliion.jpg" target="_blank" rel="noopener">
+              <img src="assets/hyliion.jpg" alt="Containerized generator frame (Hyliion)">
+            </a>
+          </div>
+          <div class="content">
+            <div class="titleRow">
+              <div>
+                <h3>Containerized Energy Generator Frame (Hyliion)</h3>
+                <p class="meta">Structural Development • Weldment Design • Supplier Coordination</p>
+              </div>
+            </div>
+
+            <ul class="bullets">
+              <li>Reduced component count by ~40 parts (~7% from ~600 baseline) via architecture consolidation.</li>
+              <li>Reduced primary C-channel thickness from 3/8" → 1/8" where margins permitted (material/cost/assembly simplification).</li>
+              <li>Increased minimum natural frequency 8 Hz → 31 Hz via strategic X-bracing and gusseting.</li>
+              <li>Validated transport (5g) + operational (3g) load cases using ANSYS (static/modal) and strain energy/load path checks.</li>
+              <li>Performed AWS D1.1 weld stress analysis using FEA-extracted forces/moments (fillet + CJP).</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">ANSYS</span>
+              <span class="chip">AWS D1.1</span>
+              <span class="chip">Weldments</span>
+              <span class="chip">DFM</span>
+              <span class="chip">Supplier Coordination</span>
+              <span class="chip">NX</span>
+            </div>
+
+            <details>
+              <summary>View technical details <span class="summaryHint">(architecture, dynamics, weld code, suppliers)</span></summary>
+              <div class="detailBody">
+                <h4>Project Overview</h4>
+                <p>
+                  Leading structural design and analysis for containerized megawatt-scale energy generator systems from concept through detailed design review.
+                  Responsible for frame architecture optimization, AWS D1.1 weld stress analysis, supplier coordination, and DFM.
+                </p>
+
+                <h4>Structural Optimization & Part Elimination</h4>
+                <ul>
+                  <li>Applied a “every part must earn its keep” philosophy: eliminated non-load-carrying brackets/secondary members.</li>
+                  <li>Confirmed load paths remained valid after removals using <code>von Mises</code> + <code>strain energy density</code> reviews.</li>
+                  <li>Reran FEA without eliminated parts to ensure margins held for 5g transport and 3g operational cases.</li>
+                </ul>
+
+                <h4>Vibration & Dynamic Response</h4>
+                <ul>
+                  <li>Raised minimum natural frequency 8 Hz → 31 Hz through targeted X-bracing and gusseting.</li>
+                  <li>Purpose: avoid resonance with rotating equipment operating speeds (frequency avoidance requirement).</li>
+                </ul>
+
+                <h4>Weld Analysis & DFM</h4>
+                <ul>
+                  <li>Extracted forces/moments from ANSYS, calculated weld stresses for fillet + CJP, checked vs AWS D1.1 allowables.</li>
+                  <li>When weld capacity was insufficient, redistributed loads using stiffeners (gussets/bracing) instead of “just increasing weld size.”</li>
+                  <li>Worked with fabrication partner to confirm process feasibility (CJP capability, access, fixturing, lead times).</li>
+                </ul>
+
+                <h4>Supplier Coordination</h4>
+                <ul>
+                  <li>Released drawings/cut lists/material specs with clear requirements and tolerances.</li>
+                  <li>Evaluated alternate suppliers for structural steel procurement (lead time, cost, certs).</li>
+                  <li>Managed schedule pressure to close analysis + design review readiness under tight timelines.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- VASCULAR -->
+        <article class="card">
+          <div class="thumb">
+            <!-- Replace assets/rotovap.jpg with your real image -->
+            <a href="assets/rotovap.jpg" target="_blank" rel="noopener">
+              <img src="assets/rotovap.jpg" alt="Rotary evaporator vacuum system (Vascular BioSciences)">
+            </a>
+          </div>
+          <div class="content">
+            <h3>Rotary Evaporator Vacuum System Redesign (Vascular BioSciences)</h3>
+            <p class="meta">Root Cause Problem Solving • Fluid/Vacuum System • Process Optimization</p>
+
+            <ul class="bullets">
+              <li>Reduced rotovap cycle time 48 hours → 4 hours (83% reduction).</li>
+              <li>Increased throughput from ~1 cycle/day → 6–8 cycles/day.</li>
+              <li>Cut cost per cycle from ~$6–7 (electric) → ~$1–3 (water), ~70–85% savings.</li>
+              <li>Implemented venturi-based water aspirator vacuum system + SOP for daily use.</li>
+              <li>Validated via 12+ months of consistent daily operation.</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">Root Cause</span>
+              <span class="chip">Venturi</span>
+              <span class="chip">Vacuum Design</span>
+              <span class="chip">Troubleshooting</span>
+              <span class="chip">Process Metrics</span>
+            </div>
+
+            <details>
+              <summary>View technical details <span class="summaryHint">(root cause → venturi system → validation)</span></summary>
+              <div class="detailBody">
+                <h4>Problem Statement</h4>
+                <p>
+                  Drug development was bottlenecked by rotovap cycle time (48 hours). Root cause was economic: continuous electric vacuum pumps were cost-prohibitive.
+                </p>
+
+                <h4>Root Cause Reframe</h4>
+                <ul>
+                  <li>Shifted from “can we afford pumps?” to “how do we achieve vacuum within startup constraints?”</li>
+                  <li>Designed solution around low-cost operability, not expensive equipment.</li>
+                </ul>
+
+                <h4>Solution: Water Aspirator Vacuum</h4>
+                <ul>
+                  <li>Used venturi effect: high-velocity water flow creates low pressure region to draw vacuum.</li>
+                  <li>Optimized tubing diameters, sealed leaks, validated leak-tightness via pressure testing.</li>
+                  <li>Created simple SOP so the team could run it daily with minimal training.</li>
+                </ul>
+
+                <h4>Why it Works</h4>
+                <ul>
+                  <li>Lower absolute pressure reduces boiling point → faster evaporation without excessive heat (important for sensitive compounds).</li>
+                </ul>
+
+                <h4>Validation</h4>
+                <ul>
+                  <li>Daily use over 12+ months with repeatable 4-hour cycles across repeated experiments.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- CAPELLA PARTNERS -->
+        <article class="card">
+          <div class="thumb">
+            <!-- Replace assets/h2.jpg with your real image -->
+            <a href="assets/h2.jpg" target="_blank" rel="noopener">
+              <img src="assets/h2.jpg" alt="High-pressure hydrogen generation system (Capella Partners)">
+            </a>
+          </div>
+          <div class="content">
+            <h3>High-Pressure Hydrogen Generation System (Capella Partners)</h3>
+            <p class="meta">Design + Prototyping • Safety-Critical Materials • Pressure/Vacuum Testing</p>
+
+            <ul class="bullets">
+              <li>Designed and prototyped a hydrogen generation system operating at ~400 psi with H₂/O₂ isolation.</li>
+              <li>Built three CAD iterations (300+ part assembly) incorporating test feedback and DFA/DFM.</li>
+              <li>Upgraded gasket material to PTFE after thermal compatibility review (rubber near melt limit).</li>
+              <li>Identified gas permeability risk in FDM part via pressure + soap bubble testing; redesigned in 6061-T6 → zero leaks.</li>
+              <li>Created production-ready drawings with GD&T and material specs; collaborated with local shops.</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">Pressure Design</span>
+              <span class="chip">Materials</span>
+              <span class="chip">DFM/DFA</span>
+              <span class="chip">GD&T</span>
+              <span class="chip">Testing</span>
+            </div>
+
+            <details>
+              <summary>View technical details <span class="summaryHint">(materials, safety testing, manufacturability)</span></summary>
+              <div class="detailBody">
+                <h4>System Context</h4>
+                <p>
+                  Alkaline electrolysis (KOH electrolyte) splits water into hydrogen and oxygen. Safety requires complete isolation of gases, leak-tight connections,
+                  and compatibility with alkaline chemistry and hydrogen service.
+                </p>
+
+                <h4>Materials & Design Choices</h4>
+                <ul>
+                  <li>Stainless steel in wetted/alkaline regions (corrosion resistance).</li>
+                  <li>PEEK housing for chemical/thermal stability; PTFE seals for high temperature rating.</li>
+                  <li>Stainless fasteners to prevent galvanic corrosion; inserts for repeatable assembly in plastics.</li>
+                  <li>Design pressure ~400 psi (validated via analysis + testing).</li>
+                </ul>
+
+                <h4>DFM/DFA + Hands-on Fabrication</h4>
+                <ul>
+                  <li>Designed with future injection molding in mind (draft, consistent wall thickness, undercut avoidance).</li>
+                  <li>Fabricated prototypes (CNC mill, drill press, band saw, laser/waterjet, tapping/finishing).</li>
+                  <li>Converted machining reality into better CAD: “design with the machinist in mind.”</li>
+                </ul>
+
+                <h4>Safety-Critical Lesson: Gas Permeability</h4>
+                <ul>
+                  <li>3D-printed (FDM) sensor fitting leaked during air pressure test (soap bubble detection).</li>
+                  <li>Root cause: layer porosity → permeability (hydrogen would be worse) → unacceptable hazard.</li>
+                  <li>Redesigned and machined replacement from 6061-T6 → zero leaks, remains in service.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- Optional 4th card (Cadense) — we can add next -->
+        <!-- Duplicate a card and fill it in when you're ready -->
       </div>
-    </div>
+    </section>
 
+    <section id="writing" class="section">
+      <h2>Writing / Blog</h2>
+      <p>
+        Coming soon: short posts teaching what I’m learning in FEA, simulation best practices, manufacturing reality, and design decisions.
+      </p>
+      <!-- Later we’ll add a /posts folder and list your posts here -->
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skillsGrid">
+        <div class="skill">
+          <h3>Simulation</h3>
+          <p>ANSYS static/modal/buckling • boundary conditions • mesh strategy • load paths • validation.</p>
+        </div>
+        <div class="skill">
+          <h3>Design + Manufacturing</h3>
+          <p>Weldments • sheet metal • DFM/DFA • drawings • GD&T • supplier constraints • cost/schedule tradeoffs.</p>
+        </div>
+        <div class="skill">
+          <h3>Tools</h3>
+          <p>ANSYS • NX / SolidWorks • AWS D1.1 • ASME Y14.5 GD&T • Python automation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="contactCard">
+        <p style="margin:0; color: var(--muted);">
+          Email: <a href="mailto:youremail@email.com">youremail@email.com</a><br/>
+          LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener">Add your link</a><br/>
+          GitHub: <a href="https://github.com/ygonzalezruiz001-ops" target="_blank" rel="noopener">ygonzalezruiz001-ops</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Christian Gonzalez Ruiz</div>
+      <div>Built with GitHub Pages</div>
+    </div>
   </div>
-</section>
 
-<section id="skills" class="section">
-  <h2>Skills</h2>
-
-  <div class="skills">
-    <div class="skill-card">
-      <h3>Simulation</h3>
-      <p>Static, modal, buckling, load paths, boundary conditions.</p>
-    </div>
-
-    <div class="skill-card">
-      <h3>Design</h3>
-      <p>Weldments, sheet metal, frames, structural systems.</p>
-    </div>
-
-    <div class="skill-card">
-      <h3>Tools</h3>
-      <p>ANSYS • NX • GD&T • Python • Manufacturing drawings</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:youremail@email.com">youremail@email.com</a></p>
-</section>
-
-<div class="footer">
-© <span id="year"></span> Christian Gonzalez Ruiz — Built with GitHub Pages
-</div>
-
-</div>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
