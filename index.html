@@ -1,197 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
+  <meta name="description" content="Mechanical Engineer focused on structural systems, manufacturing, and simulation (ANSYS/COMSOL). Portfolio + case studies." />
 
-<style>
-:root{
-  --bg:#0a0a0a;
-  --card:#141414;
-  --text:#f2f2f2;
-  --muted:#a7a7a7;
-  --line:#262626;
-}
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#141414;
+      --card2:#101010;
+      --text:#f2f2f2;
+      --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+      --accent:#d6d6d6;
+      --chipbg:#0f0f0f;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 80px}
 
-*{box-sizing:border-box}
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 16px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,10,0.78);
+      z-index:10;
+    }
+    .brand{font-weight:700; letter-spacing:0.3px}
+    .nav a{
+      text-decoration:none; color:var(--muted);
+      margin-left:16px; font-size:14px;
+    }
+    .nav a:hover{color:var(--text)}
 
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system;
-  background:var(--bg);
-  color:var(--text);
-}
+    /* Hero */
+    .hero{padding:52px 0 10px}
+    .kicker{color:var(--muted); font-size:14px; margin:0 0 10px}
+    h1{font-size:44px; margin:0 0 12px; line-height:1.05; font-weight:800}
+    .subtitle{color:var(--muted); font-size:18px; margin:0; max-width:860px}
+    .proof{
+      margin-top:14px;
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .pill{
+      border:1px solid #333;
+      background: linear-gradient(180deg, #121212 0%, #0d0d0d 100%);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--accent);
+      white-space:nowrap;
+    }
 
-.wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px 80px;
-}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:10px;
+      border:1px solid var(--line);
+      text-decoration:none; font-weight:650; font-size:14px;
+      background: var(--card);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: var(--hover)}
+    .btn.primary{
+      background: linear-gradient(180deg, #1b1b1b 0%, #121212 100%);
+      border-color:#333;
+    }
 
-h1{
-  font-size:40px;
-  margin-bottom:10px;
-}
+    /* Sections */
+    .section{margin-top:34px}
+    .section h2{font-size:18px; margin:0 0 12px; font-weight:800; letter-spacing:0.2px}
+    .section p{color:var(--muted); margin:0; max-width:900px}
 
-.subtitle{
-  color:var(--muted);
-  margin-bottom:30px;
-}
+    /* Project grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .card{
+      grid-column: span 6;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    }
+    .thumb{
+      height:190px;
+      background: var(--card2);
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition: transform 0.25s ease;
+    }
+    .thumb:hover img{transform: scale(1.03)}
+    .content{padding:16px 16px 18px}
+    .content h3{margin:0 0 6px; font-size:16px}
+    .meta{color:var(--muted); font-size:13px; margin:0 0 10px}
+    .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:14px}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      font-size:12px; color:var(--accent);
+      border:1px solid #333;
+      background: var(--chipbg);
+      padding:5px 9px; border-radius:999px;
+    }
 
-.section{
-  margin-top:40px;
-}
+    /* Skills */
+    .skillsGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .skill{
+      grid-column: span 4;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+    }
+    .skill h3{margin:0 0 6px; font-size:15px}
+    .skill p{margin:0; color:var(--muted); font-size:14px}
 
-.section h2{
-  font-size:20px;
-  margin-bottom:10px;
-}
+    /* Contact */
+    .contactCard{
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      margin-top:14px;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-  gap:20px;
-}
+    .footer{
+      margin-top:46px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-}
-
-.thumb img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
-}
-
-.content{
-  padding:18px;
-}
-
-.content h3{
-  margin-top:0;
-  margin-bottom:8px;
-}
-
-.meta{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:12px;
-}
-
-.bullets{
-  color:var(--muted);
-  font-size:14px;
-  padding-left:18px;
-}
-
-.btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 14px;
-  background:#1c1c1c;
-  border:1px solid #333;
-  border-radius:8px;
-  text-decoration:none;
-  color:white;
-  font-size:14px;
-}
-
-.btn:hover{
-  background:#222;
-}
-</style>
+    @media(max-width: 900px){
+      h1{font-size:34px}
+      .card{grid-column: span 12}
+      .skill{grid-column: span 12}
+      .navLinks{display:none}
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div class="navLinks">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
 
-<h1>Christian Gonzalez Ruiz</h1>
-<p class="subtitle">
-Mechanical Engineer • Structural Systems • Manufacturing • FEA
-</p>
+    <section class="hero">
+      <p class="kicker">Mechanical Engineer • Structural Systems • Manufacturing • FEA</p>
 
-<section class="section">
-<h2>Selected Projects</h2>
+      <h1>I break parts in simulation so they don’t break in real life.</h1>
 
-<div class="grid">
+      <p class="subtitle">
+        I design structural systems, validate with ANSYS/COMSOL + hand calcs, and make sure the design
+        survives the real world: welding, fab constraints, suppliers, and deadlines.
+      </p>
 
-<!-- HYLIION -->
-<div class="card">
-  <div class="thumb">
-    <img src="karno_2mw.png" alt="Hyliion Generator Frame">
+      <div class="proof">
+        <span class="pill">Hyliion: −40 parts (~7%) via architecture consolidation</span>
+        <span class="pill">Vascular: 48h → 4h cycle time (83% faster)</span>
+        <span class="pill">Capella: ~400 psi H₂ system, safety-first material redesign</span>
+        <span class="pill">Cadense: COMSOL multiphysics + impact testing validation</span>
+      </div>
+
+      <div class="btns">
+        <a class="btn primary" href="Christian_Gonzalez-Ruiz_Resume_2026.pdf" target="_blank" rel="noopener">Download Resume</a>
+        <a class="btn" href="https://www.linkedin.com/in/christian-gonzalez-ruiz/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:ygonzalezruiz001@gmail.com">Email</a>
+        <a class="btn" href="#projects">View Projects ↓</a>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Selected Projects</h2>
+      <p>Skim the highlights. Open the full case studies if you want the technical story.</p>
+
+      <div class="grid">
+
+        <!-- HYLIION -->
+        <article class="card">
+          <div class="thumb">
+            <img src="karno_2mw.png" alt="Containerized generator frame (Hyliion)">
+          </div>
+          <div class="content">
+            <h3>Containerized Energy Generator Frame (Hyliion)</h3>
+            <p class="meta">Structural Development • Weldment Design • Supplier Coordination</p>
+
+            <ul class="bullets">
+              <li>Reduced component count by ~40 parts (~7% from ~600 baseline).</li>
+              <li>Increased minimum natural frequency 8 Hz → 31 Hz (bracing + gussets).</li>
+              <li>Validated 5g transport + 3g operational load cases in ANSYS.</li>
+              <li>AWS D1.1 weld stress checks using FEA-extracted forces/moments.</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">ANSYS</span>
+              <span class="chip">AWS D1.1</span>
+              <span class="chip">Weldments</span>
+              <span class="chip">DFM</span>
+              <span class="chip">Supplier</span>
+            </div>
+
+            <a class="btn" href="hyliion.html">Open Full Case Study →</a>
+          </div>
+        </article>
+
+        <!-- CADENSE -->
+        <article class="card">
+          <div class="thumb">
+            <img src="hypershoe.png" alt="Hypershoe multiphysics simulation project">
+          </div>
+          <div class="content">
+            <h3>Hypershoe Optimization (Cadense Capstone)</h3>
+            <p class="meta">Multiphysics Simulation • Impact Testing • FSI</p>
+
+            <ul class="bullets">
+              <li>Solid mechanics + CFD + fluid-structure interaction (FSI) in COMSOL.</li>
+              <li>Designed and built an impact testing machine for validation.</li>
+              <li>Awarded “Most Technical Project.”</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">COMSOL</span>
+              <span class="chip">FSI</span>
+              <span class="chip">Testing</span>
+              <span class="chip">Validation</span>
+            </div>
+
+            <a class="btn" href="cadense.html">Open Full Case Study →</a>
+          </div>
+        </article>
+
+        <!-- VASCULAR -->
+        <article class="card">
+          <div class="thumb">
+            <img src="rotovap.png" alt="Rotary evaporator vacuum system (Vascular BioSciences)">
+          </div>
+          <div class="content">
+            <h3>Rotary Evaporator Vacuum System (Vascular BioSciences)</h3>
+            <p class="meta">Root Cause Problem Solving • Vacuum System • Process Optimization</p>
+
+            <ul class="bullets">
+              <li>Reduced rotovap cycle time 48 hours → 4 hours (83% reduction).</li>
+              <li>Increased throughput ~1 cycle/day → 6–8 cycles/day.</li>
+              <li>Cut cost per cycle ~$6–7 → ~$1–3 with venturi-based aspirator system.</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">Root Cause</span>
+              <span class="chip">Venturi</span>
+              <span class="chip">Vacuum</span>
+              <span class="chip">Process</span>
+            </div>
+
+            <a class="btn" href="vascular.html">Open Full Case Study →</a>
+          </div>
+        </article>
+
+        <!-- CAPELLA -->
+        <article class="card">
+          <div class="thumb">
+            <img src="hydrogen.png" alt="High-pressure hydrogen generation system (Capella Partners)">
+          </div>
+          <div class="content">
+            <h3>High-Pressure Hydrogen Generation System (Capella Partners)</h3>
+            <p class="meta">Design + Prototyping • Materials • Safety-Critical Testing</p>
+
+            <ul class="bullets">
+              <li>Designed hydrogen generation system operating at ~400 psi with H₂/O₂ isolation.</li>
+              <li>3 iterations; 300+ part assembly with DFM/DFA improvements.</li>
+              <li>Found FDM permeability issue via pressure + soap bubble test → redesigned in 6061 aluminum.</li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">Pressure</span>
+              <span class="chip">Materials</span>
+              <span class="chip">DFM/DFA</span>
+              <span class="chip">Testing</span>
+            </div>
+
+            <a class="btn" href="capella.html">Open Full Case Study →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>
+        I’m a mechanical engineer who lives at the intersection of structural design, simulation, and manufacturing reality.
+        I like problems where the constraint is *actually* something else (cost, schedule, supplier process capability),
+        and I enjoy turning that into a clean design + measurable results.
+      </p>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills Snapshot</h2>
+      <div class="skillsGrid">
+        <div class="skill">
+          <h3>Simulation</h3>
+          <p>ANSYS (static/modal/buckling) • load paths • BCs • mesh strategy • hand calc sanity checks • validation mindset.</p>
+        </div>
+        <div class="skill">
+          <h3>Design + Manufacturing</h3>
+          <p>Weldments • DFM/DFA • drawings • GD&T basics • fixturing/access thinking • supplier constraints.</p>
+        </div>
+        <div class="skill">
+          <h3>Tools</h3>
+          <p>ANSYS • COMSOL • NX/SolidWorks • AWS D1.1 familiarity • Python for automation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" class="section">
+      <h2>Writing</h2>
+      <p>
+        Coming soon: short posts teaching what I’m learning in FEA, simulation best practices, and design decisions.
+        (I’m building a library of “things I wish I knew earlier.”)
+      </p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="contactCard">
+        <p style="margin:0; color: var(--muted);">
+          Email: <a href="mailto:ygonzalezruiz001@gmail.com">ygonzalezruiz001@gmail.com</a><br/>
+          LinkedIn: <a href="https://www.linkedin.com/in/christian-gonzalez-ruiz/" target="_blank" rel="noopener">christian-gonzalez-ruiz</a><br/>
+          GitHub Pages: <a href="https://ygonzalezruiz001-ops.github.io/" target="_blank" rel="noopener">ygonzalezruiz001-ops.github.io</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Christian Gonzalez Ruiz</div>
+      <div>Built with GitHub Pages</div>
+    </div>
   </div>
-  <div class="content">
-    <h3>Containerized Energy Generator Frame (Hyliion)</h3>
-    <p class="meta">Structural Development • Weldment Design • ANSYS</p>
-    <ul class="bullets">
-      <li>Reduced ~40 parts (~7%) through architecture optimization</li>
-      <li>Raised natural frequency 8 Hz → 31 Hz</li>
-      <li>AWS D1.1 weld stress validation</li>
-      <li>Validated 5g transport + 3g operational loads</li>
-    </ul>
-    <a class="btn" href="hyliion.html">Open Full Case Study →</a>
-  </div>
-</div>
 
-<!-- CADENSE -->
-<div class="card">
-  <div class="thumb">
-    <img src="hypershoe.png" alt="Cadense Hypershoe">
-  </div>
-  <div class="content">
-    <h3>Hypershoe Optimization (Cadense)</h3>
-    <p class="meta">Multiphysics Simulation • FSI • Impact Testing</p>
-    <ul class="bullets">
-      <li>Solid + CFD + FSI simulation in COMSOL</li>
-      <li>Built impact testing machine</li>
-      <li>Most Technical Project Award</li>
-    </ul>
-    <a class="btn" href="cadense.html">Open Full Case Study →</a>
-  </div>
-</div>
-
-<!-- VASCULAR -->
-<div class="card">
-  <div class="thumb">
-    <img src="rotovap.png" alt="Rotary Evaporator">
-  </div>
-  <div class="content">
-    <h3>Rotary Evaporator Vacuum System (Vascular BioSciences)</h3>
-    <p class="meta">Root Cause • Vacuum Design • Process Optimization</p>
-    <ul class="bullets">
-      <li>Reduced cycle time 48h → 4h</li>
-      <li>6–8x throughput increase</li>
-      <li>70–85% cost reduction</li>
-    </ul>
-    <a class="btn" href="vascular.html">Open Full Case Study →</a>
-  </div>
-</div>
-
-<!-- CAPELLA -->
-<div class="card">
-  <div class="thumb">
-    <img src="hydrogen.png" alt="Hydrogen System">
-  </div>
-  <div class="content">
-    <h3>High-Pressure Hydrogen Generation System (Capella)</h3>
-    <p class="meta">Pressure Design • Materials • Prototyping</p>
-    <ul class="bullets">
-      <li>~400 psi hydrogen system</li>
-      <li>300+ part assembly</li>
-      <li>Redesigned permeable FDM fitting → 6061 aluminum</li>
-    </ul>
-    <a class="btn" href="capella.html">Open Full Case Study →</a>
-  </div>
-</div>
-
-</div>
-</section>
-
-</div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
