@@ -1,1 +1,264 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capella Partners | High-Pressure Hydrogen Generation System</title>
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#141414;
+      --text:#f2f2f2;
+      --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:inherit}
+    .wrap{max-width:900px; margin:0 auto; padding:24px 18px 80px}
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 18px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      background:rgba(10,10,10,0.85);
+      backdrop-filter:blur(10px);
+      z-index:10;
+    }
+    .brand{font-weight:700; letter-spacing:0.3px}
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      margin-left:14px;
+      font-size:14px;
+    }
+    .nav a:hover{color:var(--text)}
+
+    h1{font-size:34px; margin:26px 0 8px; line-height:1.15}
+    .sub{color:var(--muted); margin:0 0 18px}
+
+    .heroImg{
+      margin:18px 0 18px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:var(--card);
+    }
+    .heroImg img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px;
+      margin-top:14px;
+    }
+    .card h2{
+      font-size:15px;
+      margin:0 0 10px;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+    }
+    .card p,.card li{color:var(--muted); font-size:14px}
+    ul{margin:8px 0 0; padding-left:18px}
+
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .kpi{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px;
+      background:#101010;
+    }
+    .kpi b{
+      display:block;
+      color:var(--text);
+      font-size:16px;
+      margin-bottom:4px;
+    }
+
+    .callout{
+      border-left:3px solid #3a3a3a;
+      padding:12px 12px 12px 14px;
+      background:#101010;
+      border-radius:12px;
+      margin-top:10px;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:14px;
+      padding:11px 14px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      background:#151515;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .btn:hover{background:var(--hover); transform: translateY(-1px)}
+
+    code{
+      background:#0f0f0f;
+      border:1px solid #2a2a2a;
+      padding:2px 6px;
+      border-radius:6px;
+      color:#e6e6e6;
+    }
+
+    @media(max-width:800px){
+      .kpis{grid-template-columns:1fr}
+      .heroImg img{height:220px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="nav">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="hyliion.html">Hyliion</a>
+        <a href="capella.html">Hydrogen</a>
+        <a href="vascular.html">Rotovap</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </div>
+
+    <h1>High-Pressure Hydrogen Generation System</h1>
+    <p class="sub">Capella Partners • Aug 2024 – Jun 2025 • Design, Prototyping & Safety-Critical Material Selection</p>
+
+    <div class="heroImg">
+      <!-- Replace with your real image. Recommended filename: assets/h2.jpg -->
+      <img src="assets/h2.jpg" alt="High-pressure hydrogen generation system">
+    </div>
+
+    <div class="card">
+      <h2>Impact Snapshot</h2>
+      <div class="kpis">
+        <div class="kpi"><b>~400 psi</b><span>Design pressure with leak-tight isolation</span></div>
+        <div class="kpi"><b>300+ parts</b><span>Full system assembly across multiple iterations</span></div>
+        <div class="kpi"><b>3 CAD iterations</b><span>Test-feedback loop + DFM/DFA improvements</span></div>
+        <div class="kpi"><b>Safety lesson</b><span>Permeability risk discovered + eliminated via redesign</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        Designed and prototyped a complete hydrogen generation system for laboratory research using alkaline electrolysis.
+        The system operates at ~400 psi and requires strict isolation of hydrogen and oxygen gases through leak-tight design,
+        material compatibility, and safety-first validation.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>System Context</h2>
+      <p>
+        The system uses alkaline electrolysis to split water:
+      </p>
+      <p class="callout">
+        <code>2H₂O + electrical energy → 2H₂ + O₂</code>
+      </p>
+      <ul>
+        <li>KOH electrolyte enables ion conduction between electrodes.</li>
+        <li>Hydrogen (cathode) and oxygen (anode) must remain fully isolated and captured separately.</li>
+        <li>Manufacturing implication: pressure integrity + leak-tight joints + chemical compatibility + disciplined testing.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Materials & Design Specifications</h2>
+      <ul>
+        <li><b>Stainless steel</b> for electrodes/base plates (corrosion resistance in alkaline environment).</li>
+        <li><b>PEEK</b> protective housing for chemical + thermal stability.</li>
+        <li><b>PTFE (Teflon)</b> seals/gaskets after thermal review showed rubber approaching melt risk (PTFE rated ~400°C).</li>
+        <li><b>Stainless fasteners</b> to prevent galvanic corrosion in alkaline service.</li>
+        <li><b>Press-fit threaded inserts</b> in plastic components for repeatable assembly without stripping.</li>
+        <li><b>6061-T6 aluminum</b> where non-wetted for machinability and weight control.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Design + Prototyping Process</h2>
+      <ul>
+        <li>Built three full CAD iterations in SolidWorks, driven by prototype testing and manufacturability feedback.</li>
+        <li>300+ part assembly: pressure vessels, fluid manifolds, separation chambers, sensor integration, supports.</li>
+        <li>Applied DFM/DFA from the start:
+          <ul>
+            <li>Geometry simplification to minimize machining complexity</li>
+            <li>Standardized fastener sizes to reduce SKU complexity</li>
+            <li>Fillets over sharp corners to reduce stress concentrations</li>
+            <li>Injection-molding-aware plastic design (draft, undercut avoidance, consistent wall thickness)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Hands-on Fabrication</h2>
+      <ul>
+        <li>Fabricated prototype components using CNC mills, drill presses, band saws, laser cutters, waterjet, and hand tools.</li>
+        <li>Learned what features drive headaches for machinists (multiple setups, difficult fixturing, unrealistic tolerances).</li>
+        <li>Converted fabrication lessons directly back into CAD to reduce cost, lead time, and assembly friction.</li>
+      </ul>
+      <div class="callout">
+        <p style="margin:0; color:var(--muted); font-size:14px;">
+          Core philosophy developed: <b>Design with the machinist in mind.</b>
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Safety-Critical Lesson: Gas Permeability</h2>
+      <p>
+        A custom fitting was designed to integrate a hydrogen sensor. To save time, it was initially produced via FDM 3D printing.
+        Before hydrogen testing, a safety pressure test was performed with compressed air and soap-bubble leak detection.
+      </p>
+      <ul>
+        <li>Result: leaks detected.</li>
+        <li>Root cause: FDM layer porosity → gas permeability (hydrogen would leak even more).</li>
+        <li>Fix: redesigned and machined a replacement from <b>6061-T6 aluminum</b>.</li>
+        <li>Validation: pressure tested aluminum version → <b>zero leaks</b> (remains in service).</li>
+      </ul>
+      <div class="callout">
+        <p style="margin:0; color:var(--muted); font-size:14px;">
+          Takeaway: material properties are as critical as geometry—optimize for the environment (pressure, temperature, chemical exposure, permeability) and verify by test.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Manufacturing Mindset</h2>
+      <ul>
+        <li>Designed parts to minimize CNC setups and complex fixturing where possible.</li>
+        <li>Balanced functionality with manufacturability to reduce cost and schedule risk.</li>
+        <li>Created production-ready drawings with GD&T (ASME Y14.5) and material specifications for external shops.</li>
+      </ul>
+    </div>
+
+    <a class="btn" href="index.html">← Back to Home</a>
+
+  </div>
+</body>
+</html>
