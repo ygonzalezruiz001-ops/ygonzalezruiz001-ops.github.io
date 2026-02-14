@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vascular BioSciences | Rotary Evaporator Vacuum System Redesign</title>
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#141414;
+      --text:#f2f2f2;
+      --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:inherit}
+    .wrap{max-width:900px; margin:0 auto; padding:24px 18px 80px}
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 18px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      background:rgba(10,10,10,0.85);
+      backdrop-filter:blur(10px);
+      z-index:10;
+    }
+    .brand{font-weight:700; letter-spacing:0.3px}
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      margin-left:14px;
+      font-size:14px;
+    }
+    .nav a:hover{color:var(--text)}
+
+    h1{font-size:34px; margin:26px 0 8px; line-height:1.15}
+    .sub{color:var(--muted); margin:0 0 18px}
+
+    .heroImg{
+      margin:18px 0 18px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:var(--card);
+    }
+    .heroImg img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px;
+      margin-top:14px;
+    }
+    .card h2{
+      font-size:15px;
+      margin:0 0 10px;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+    }
+    .card p,.card li{color:var(--muted); font-size:14px}
+    ul{margin:8px 0 0; padding-left:18px}
+
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .kpi{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px;
+      background:#101010;
+    }
+    .kpi b{
+      display:block;
+      color:var(--text);
+      font-size:16px;
+      margin-bottom:4px;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:14px;
+      padding:11px 14px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      background:#151515;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .btn:hover{background:var(--hover); transform: translateY(-1px)}
+
+    @media(max-width:800px){
+      .kpis{grid-template-columns:1fr}
+      .heroImg img{height:220px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="nav">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="hyliion.html">Hyliion</a>
+        <a href="capella.html">Hydrogen</a>
+        <a href="vascular.html">Rotovap</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </div>
+
+    <h1>Rotary Evaporator Vacuum System Redesign</h1>
+    <p class="sub">Vascular BioSciences • Jan 2024 – Jun 2025 • Process Optimization & Root Cause Problem Solving</p>
+
+    <div class="heroImg">
+      <!-- Replace with your real image. Recommended filename: assets/rotovap.jpg -->
+      <img src="assets/rotovap.jpg" alt="Rotary evaporator vacuum system redesign">
+    </div>
+
+    <div class="card">
+      <h2>Impact Snapshot</h2>
+      <div class="kpis">
+        <div class="kpi"><b>48h → 4h</b><span>83% cycle time reduction</span></div>
+        <div class="kpi"><b>6–8×</b><span>Throughput increase (cycles/day)</span></div>
+        <div class="kpi"><b>$6–7 → $1–3</b><span>Cost per cycle reduced ~70–85%</span></div>
+        <div class="kpi"><b>12+ months</b><span>Validated via daily use</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Problem</h2>
+      <p>
+        The drug development team was bottlenecked by rotary evaporator (rotovap) cycle time:
+        ~48 hours per evaporation cycle. The constraint was not technical performance—it was operating cost.
+        Continuous electric vacuum pumps were too expensive to run continuously for a startup.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Root Cause Analysis</h2>
+      <ul>
+        <li>48-hour cycle time limited research velocity and experimentation throughput.</li>
+        <li>Primary driver: no continuous vacuum capability in daily operation.</li>
+        <li>Why no vacuum? Electric pumps were cost-prohibitive to run continuously.</li>
+        <li><b>Root cause:</b> economic constraint (operating cost), not a fundamental technical limitation.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Solution: Water Aspirator Vacuum (Venturi Effect)</h2>
+      <ul>
+        <li>Implemented a venturi-based water aspirator: high-velocity water flow creates a low-pressure region that draws vacuum.</li>
+        <li>Designed and assembled the system using standard NPT fittings and clear PVC tubing.</li>
+        <li>Systematically troubleshot the vacuum path:
+          <ul>
+            <li>Sealed leaks with high-vacuum silicone grease at interfaces</li>
+            <li>Optimized tubing diameters for flow / pressure drop tradeoffs</li>
+            <li>Validated connections via pressure/leak checks</li>
+          </ul>
+        </li>
+        <li>Created a simple SOP for end-users: “turn on faucet gradually to create vacuum.”</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Engineering Rationale</h2>
+      <ul>
+        <li>Lower absolute pressure reduces solvent boiling point → faster evaporation at the same temperature.</li>
+        <li>Enabled faster evaporation without overheating temperature-sensitive compounds.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Validation</h2>
+      <ul>
+        <li>Validated through 12+ months of daily use with consistent 4-hour cycle times across repeated experiments.</li>
+        <li>Outcome: research throughput unlocked—6–8 cycles/day vs. 1 cycle per ~48 hours.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>What This Demonstrates</h2>
+      <ul>
+        <li><b>Root cause thinking:</b> reframed the problem from “pump cost” to “deliver vacuum function within constraints.”</li>
+        <li><b>System-level optimization:</b> physics + economics + operations, not just “build a part.”</li>
+        <li><b>Troubleshooting discipline:</b> component-level validation → full system integration.</li>
+        <li><b>Metrics-driven impact:</b> quantified and sustained improvements.</li>
+      </ul>
+    </div>
+
+    <a class="btn" href="index.html">← Back to Home</a>
+
+  </div>
+</body>
+</html>
