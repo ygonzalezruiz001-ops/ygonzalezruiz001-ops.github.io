@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thermal Management for LV Cabinet (Hyliion — 800 kW)</title>
+  <meta name="description" content="Forced convection cooling design for a low-voltage cabinet in a containerized 800 kW generator. Fan sizing, system curve, CFD, and validation approach." />
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#141414;
+      --card2:#101010;
+      --text:#f2f2f2;
+      --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+      --accent:#d6d6d6;
+      --chipbg:#0f0f0f;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 90px}
+
+    .top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 18px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,10,0.75);
+      z-index:10;
+    }
+    .brand{font-weight:650; letter-spacing:0.4px}
+    .top a{
+      text-decoration:none; color:var(--muted);
+      margin-left:16px; font-size:14px;
+    }
+    .top a:hover{color:var(--text)}
+
+    h1{font-size:40px; margin:18px 0 6px; line-height:1.12; font-weight:800}
+    .sub{color:var(--muted); margin:0 0 18px; font-size:15px}
+    .lede{
+      color:var(--muted);
+      font-size:17px;
+      margin:0 0 22px;
+      max-width:920px;
+    }
+
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:10px;
+      border:1px solid var(--line);
+      text-decoration:none; font-weight:650; font-size:14px;
+      background: var(--card);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: var(--hover)}
+    .btn.primary{
+      background: linear-gradient(180deg, #1b1b1b 0%, #121212 100%);
+      border-color:#333;
+    }
+
+    .imageBlock{
+      position:relative;
+      max-width:880px;
+      margin:18px auto 10px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#111;
+    }
+    .imageBlock img{width:100%; display:block}
+    .imageCaption{
+      position:absolute;
+      bottom:10px;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:12px;
+      color:rgba(255,255,255,0.65);
+      background:rgba(0,0,0,0.55);
+      padding:6px 12px;
+      border-radius:8px;
+      backdrop-filter: blur(6px);
+      text-align:center;
+      max-width:92%;
+    }
+
+    .section{margin-top:26px}
+    .section h2{
+      font-size:14px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin:0 0 10px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .panel{
+      grid-column: span 12;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .stat{
+      grid-column: span 4;
+      background: #111;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+    }
+    .stat .k{color:var(--muted); font-size:12px; margin:0 0 6px}
+    .stat .v{font-size:18px; font-weight:800; margin:0}
+    .stat .n{color:var(--muted); font-size:13px; margin:6px 0 0}
+
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    li{margin:6px 0}
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .chip{
+      font-size:12px; color:var(--accent);
+      border:1px solid #333;
+      background: var(--chipbg);
+      padding:5px 9px; border-radius:999px;
+    }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:12px;
+    }
+    .col{
+      grid-column: span 6;
+      background:#111;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+    }
+    .col h3{margin:0 0 8px; font-size:14px}
+    .col p{margin:0; color:var(--muted); font-size:14px}
+
+    .footer{
+      margin-top:44px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+
+    @media(max-width: 900px){
+      h1{font-size:32px}
+      .stat{grid-column: span 12}
+      .col{grid-column: span 12}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div>
+        <a href="index.html">← Home</a>
+        <a href="hyliion.html">Hyliion (Structures)</a>
+        <a href="capella.html">Capella</a>
+        <a href="vascular.html">Vascular</a>
+      </div>
+    </div>
+
+    <h1>Thermal Management for LV Cabinet</h1>
+    <p class="sub">Hyliion • 800 kW Containerized Generator • Forced Convection • CFD • Fan/System Curves</p>
+
+    <p class="lede">
+      The LV cabinet had a brutal thermal constraint: without forced convection, worst-case internal temperatures were projected to reach ~290°C.
+      The requirement was &lt;55°C — inside a tight spaceclaim — in a marine environment where salt + humidity mean filtration and higher pressure drop.
+      I owned the airflow + fan selection workflow end-to-end: from first-principles sizing → converged fan power coupling → CFD/system curve → design changes for real-world fabrication.
+    </p>
+
+    <div class="btns">
+      <a class="btn primary" href="index.html#projects">Back to Projects</a>
+      <a class="btn" href="mailto:ygonzalezruiz001@gmail.com">Email</a>
+      <a class="btn" href="https://www.linkedin.com/in/christian-gonzalez-ruiz/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="imageBlock">
+      <img src="lv-cabinet.png" alt="LV cabinet thermal management concept">
+      <div class="imageCaption">Image may be conceptual/illustrative. Detailed internal layout omitted due to confidentiality.</div>
+    </div>
+
+    <section class="section">
+      <h2>Impact Snapshot</h2>
+
+      <div class="stats">
+        <div class="stat">
+          <p class="k">Requirement</p>
+          <p class="v">&lt;55°C cabinet</p>
+          <p class="n">Worst-case cooling target for electronics reliability</p>
+        </div>
+        <div class="stat">
+          <p class="k">Heat Load (baseline)</p>
+          <p class="v">~200 W</p>
+          <p class="n">Component dissipation + fan heat add-back accounted in sizing loop</p>
+        </div>
+        <div class="stat">
+          <p class="k">Environment</p>
+          <p class="v">Marine air</p>
+          <p class="n">Salt/humidity filtration → higher ΔP → fan selection matters</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Problem</h2>
+      <div class="panel">
+        <ul>
+          <li><b>Thermal risk:</b> no forced convection → projected temperatures approaching ~290°C (unacceptable).</li>
+          <li><b>Requirement:</b> keep cabinet below 55°C while respecting strict packaging constraints.</li>
+          <li><b>Marine environment:</b> cannot freely ingest ambient air — filtration needed for moisture + salt aerosols, increasing system pressure drop.</li>
+          <li><b>Design reality:</b> airflow must be compatible with fabrication, serviceability, and available electrical power.</li>
+        </ul>
+
+        <div class="chips">
+          <span class="chip">Forced Convection</span>
+          <span class="chip">Pressure Drop</span>
+          <span class="chip">Filtration</span>
+          <span class="chip">Packaging</span>
+          <span class="chip">Reliability</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Approach</h2>
+
+      <div class="twoCol">
+        <div class="col">
+          <h3>1) First-principles airflow sizing + fan heat coupling</h3>
+          <p>
+            Starting from the heat load (<b>Q ≈ 200 W</b>) and temperature constraint, I computed the required mass flow using
+            basic energy balance (<b>Q = ṁ · c<sub>p</sub> · ΔT</b>) and converted to volumetric flow rate (V̇).
+            Because the fan’s electrical power ultimately becomes heat inside/near the cabinet, I solved the coupled problem
+            iteratively: required flow → fan power → updated Q → updated flow… until it converged.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>2) System curve (ΔP vs V̇) using CFD, anchored by experiment</h3>
+          <p>
+            The real challenge isn’t just flow — it’s <b>flow under restriction</b>.
+            Filtration + tight internal ducting increases ΔP, so I built a system curve for the cabinet.
+            To de-risk CFD assumptions, I used an earlier <b>200 kW</b> cabinet as a physical test article:
+            measured pressure + flow to establish the curve, then verified trends in CFD.
+            I then applied the validated workflow to the <b>800 kW</b> cabinet design.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 8px; font-size:14px;">3) Fan selection at the operating point + design changes to make it real</h3>
+        <ul>
+          <li>Plotted the cabinet <b>system curve</b> and overlaid <b>supplier fan curves</b> to select the fan at the true operating point.</li>
+          <li>Accounted for <b>filter ΔP</b> (salt/humidity media) and inlet/outlet losses in the total pressure budget.</li>
+          <li>Checked <b>fan power draw</b> vs available electrical supply and ensured the thermal model included fan heat add-back.</li>
+          <li>Updated cabinet design with new inlet/outlet openings and mounting strategy to fit the constrained spaceclaim.</li>
+          <li>Result: design predictions indicated the cabinet could meet the <b>&lt;55°C</b> requirement.</li>
+        </ul>
+
+        <div class="chips">
+          <span class="chip">Fan Curves</span>
+          <span class="chip">Operating Point</span>
+          <span class="chip">CFD</span>
+          <span class="chip">ΔP Budget</span>
+          <span class="chip">Design Iteration</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What I’d Test On Hardware</h2>
+      <div class="panel">
+        <ul>
+          <li><b>Instrument the cabinet:</b> thermocouples at hotspots + inlet/outlet air temps, plus cabinet internal air temperature mapping.</li>
+          <li><b>Measure performance:</b> pressure taps across filter + fan, and airflow measurement (anemometer/grid or inline flow device).</li>
+          <li><b>Confirm model assumptions:</b> compare measured ΔP–V̇ to predicted system curve; adjust CFD loss coefficients if needed.</li>
+          <li><b>Acceptance criteria:</b> demonstrate &lt;55°C at defined ambient + heat load with margin, and document repeatability.</li>
+        </ul>
+        <p style="margin:10px 0 0; color:var(--muted); font-size:13px;">
+          (This section is here because good thermal design isn’t “CFD said so” — it’s “CFD + data agree.”)
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Christian Gonzalez Ruiz</div>
+      <div><a href="index.html">Home</a></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
