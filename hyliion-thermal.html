@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thermal Management for LV Cabinet (Hyliion — 800 kW)</title>
-  <meta name="description" content="Forced convection cooling design for a low-voltage cabinet in a containerized 800 kW generator. Fan sizing, system curve, CFD, and validation approach." />
+  <title>Thermal Systems Architecture for LV Cabinet | Hyliion</title>
+  <meta name="description" content="Forced convection thermal design for a low-voltage cabinet in a generator platform: system curves, CFD validation, and integration under environmental constraints." />
 
   <style>
     :root{
@@ -19,6 +19,7 @@
       --chipbg:#0f0f0f;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -69,6 +70,7 @@
       border-color:#333;
     }
 
+    /* Image block with subtle caption overlay */
     .imageBlock{
       position:relative;
       max-width:880px;
@@ -103,38 +105,13 @@
       margin:0 0 10px;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:14px;
-      margin-top:10px;
-    }
-
     .panel{
-      grid-column: span 12;
       background: var(--card);
       border:1px solid var(--line);
       border-radius:16px;
       padding:16px;
       box-shadow: 0 10px 28px rgba(0,0,0,0.35);
     }
-
-    .stats{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-      margin-top:12px;
-    }
-    .stat{
-      grid-column: span 4;
-      background: #111;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:14px;
-    }
-    .stat .k{color:var(--muted); font-size:12px; margin:0 0 6px}
-    .stat .v{font-size:18px; font-weight:800; margin:0}
-    .stat .n{color:var(--muted); font-size:13px; margin:6px 0 0}
 
     ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
     li{margin:6px 0}
@@ -174,7 +151,6 @@
 
     @media(max-width: 900px){
       h1{font-size:32px}
-      .stat{grid-column: span 12}
       .col{grid-column: span 12}
     }
   </style>
@@ -187,18 +163,19 @@
       <div>
         <a href="index.html">← Home</a>
         <a href="hyliion.html">Hyliion (Structures)</a>
+        <a href="cadense.html">Cadense</a>
         <a href="capella.html">Capella</a>
         <a href="vascular.html">Vascular</a>
       </div>
     </div>
 
-    <h1>Thermal Systems Architecture & Fan Optimization – 800kW LV Cabinet (Hyliion)</h1>
-    <p class="sub">Hyliion • 800 kW Containerized Generator • Forced Convection • CFD • Fan/System Curves</p>
+    <h1>Thermal Systems Architecture for LV Cabinet</h1>
+    <p class="sub">Hyliion • Generator Platform • Forced Convection • System Curves • CFD • Environmental Filtration</p>
 
     <p class="lede">
-      The LV cabinet had a brutal thermal constraint: without forced convection, worst-case internal temperatures were projected to reach ~290°C.
-      The requirement was &lt;55°C — inside a tight spaceclaim — in a marine environment where salt + humidity mean filtration and higher pressure drop.
-      I owned the airflow + fan selection workflow end-to-end: from first-principles sizing → converged fan power coupling → CFD/system curve → design changes for real-world fabrication.
+      Designed a forced-convection thermal management strategy for a low-voltage (LV) control cabinet on a generator platform.
+      The work focused on keeping cabinet temperatures within industry-standard reliability limits under continuous operation,
+      while respecting tight packaging, filtration-driven pressure drop, and real-world manufacturing constraints.
     </p>
 
     <div class="btns">
@@ -208,48 +185,25 @@
     </div>
 
     <div class="imageBlock">
-      <img src="lvcabinet.jpg" alt="LV cabinet thermal management concept">
-      <div class="imageCaption">Image may be conceptual/illustrative. Detailed internal layout omitted due to confidentiality.</div>
+      <img src="lv-cabinet.png" alt="LV cabinet thermal systems concept">
+      <div class="imageCaption">Concept visualization. Detailed internal layout omitted due to confidentiality.</div>
     </div>
-
-    <section class="section">
-      <h2>Impact Snapshot</h2>
-
-      <div class="stats">
-        <div class="stat">
-          <p class="k">Requirement</p>
-          <p class="v">&lt;55°C cabinet</p>
-          <p class="n">Worst-case cooling target for electronics reliability</p>
-        </div>
-        <div class="stat">
-          <p class="k">Heat Load (baseline)</p>
-          <p class="v">~200 W</p>
-          <p class="n">Component dissipation + fan heat add-back accounted in sizing loop</p>
-        </div>
-        <div class="stat">
-          <p class="k">Environment</p>
-          <p class="v">Marine air</p>
-          <p class="n">Salt/humidity filtration → higher ΔP → fan selection matters</p>
-        </div>
-      </div>
-    </section>
 
     <section class="section">
       <h2>Problem</h2>
       <div class="panel">
         <ul>
-          <li><b>Thermal risk:</b> no forced convection → projected temperatures approaching ~290°C (unacceptable).</li>
-          <li><b>Requirement:</b> keep cabinet below 55°C while respecting strict packaging constraints.</li>
-          <li><b>Marine environment:</b> cannot freely ingest ambient air — filtration needed for moisture + salt aerosols, increasing system pressure drop.</li>
-          <li><b>Design reality:</b> airflow must be compatible with fabrication, serviceability, and available electrical power.</li>
+          <li><b>Thermal risk:</b> without forced convection, internal temperatures can exceed acceptable operating limits for control and power components.</li>
+          <li><b>Objective:</b> maintain cabinet air temperatures within reliability limits under continuous operation.</li>
+          <li><b>Environmental constraint:</b> filtered intake required for humid/marine-adjacent operation → higher system pressure drop.</li>
+          <li><b>Integration reality:</b> airflow must fit within restricted packaging while remaining serviceable and manufacturable.</li>
         </ul>
-
         <div class="chips">
-          <span class="chip">Forced Convection</span>
+          <span class="chip">Reliability</span>
           <span class="chip">Pressure Drop</span>
           <span class="chip">Filtration</span>
           <span class="chip">Packaging</span>
-          <span class="chip">Reliability</span>
+          <span class="chip">DFM</span>
         </div>
       </div>
     </section>
@@ -259,59 +213,52 @@
 
       <div class="twoCol">
         <div class="col">
-          <h3>1) First-principles airflow sizing + fan heat coupling</h3>
+          <h3>1) First-principles sizing + converged operating point</h3>
           <p>
-            Starting from the heat load (<b>Q ≈ 200 W</b>) and temperature constraint, I computed the required mass flow using
-            basic energy balance (<b>Q = ṁ · c<sub>p</sub> · ΔT</b>) and converted to volumetric flow rate (V̇).
-            Because the fan’s electrical power ultimately becomes heat inside/near the cabinet, I solved the coupled problem
-            iteratively: required flow → fan power → updated Q → updated flow… until it converged.
+            Built an iterative sizing workflow to compute the airflow requirement from energy balance,
+            then converged the coupled problem between airflow, pressure drop, fan power, and resulting temperature rise.
+            This avoided “assumption-based” fan sizing and produced a physically consistent operating point.
           </p>
         </div>
 
         <div class="col">
-          <h3>2) System curve (ΔP vs V̇) using CFD, anchored by experiment</h3>
+          <h3>2) System curve (ΔP vs V̇) using CFD, anchored by measurement</h3>
           <p>
-            The real challenge isn’t just flow — it’s <b>flow under restriction</b>.
-            Filtration + tight internal ducting increases ΔP, so I built a system curve for the cabinet.
-            To de-risk CFD assumptions, I used an earlier <b>200 kW</b> cabinet as a physical test article:
-            measured pressure + flow to establish the curve, then verified trends in CFD.
-            I then applied the validated workflow to the <b>800 kW</b> cabinet design.
+            Developed the cabinet system resistance curve to account for internal flow restrictions and filtration losses.
+            Used CFD to capture the geometry-driven losses, and anchored the methodology using instrumentation data
+            from a prior platform configuration to ensure the modeling approach was realistic.
           </p>
         </div>
       </div>
 
       <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 8px; font-size:14px;">3) Fan selection at the operating point + design changes to make it real</h3>
+        <h3 style="margin:0 0 8px; font-size:14px;">3) Fan selection + cabinet integration</h3>
         <ul>
-          <li>Plotted the cabinet <b>system curve</b> and overlaid <b>supplier fan curves</b> to select the fan at the true operating point.</li>
-          <li>Accounted for <b>filter ΔP</b> (salt/humidity media) and inlet/outlet losses in the total pressure budget.</li>
-          <li>Checked <b>fan power draw</b> vs available electrical supply and ensured the thermal model included fan heat add-back.</li>
-          <li>Updated cabinet design with new inlet/outlet openings and mounting strategy to fit the constrained spaceclaim.</li>
-          <li>Result: design predictions indicated the cabinet could meet the <b>&lt;55°C</b> requirement.</li>
+          <li>Selected the fan at the true operating point by intersecting the system curve with supplier fan performance curves.</li>
+          <li>Checked electrical power availability and thermal impact of fan power as part of the converged solution.</li>
+          <li>Updated cabinet intake/exhaust geometry to improve airflow distribution and integration within packaging limits.</li>
+          <li>Designed with serviceability and manufacturability in mind (access, mounting, filtration replacement).</li>
         </ul>
 
         <div class="chips">
           <span class="chip">Fan Curves</span>
           <span class="chip">Operating Point</span>
           <span class="chip">CFD</span>
-          <span class="chip">ΔP Budget</span>
-          <span class="chip">Design Iteration</span>
+          <span class="chip">Integration</span>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>What I’d Test On Hardware</h2>
+      <h2>Skills Demonstrated</h2>
       <div class="panel">
         <ul>
-          <li><b>Instrument the cabinet:</b> thermocouples at hotspots + inlet/outlet air temps, plus cabinet internal air temperature mapping.</li>
-          <li><b>Measure performance:</b> pressure taps across filter + fan, and airflow measurement (anemometer/grid or inline flow device).</li>
-          <li><b>Confirm model assumptions:</b> compare measured ΔP–V̇ to predicted system curve; adjust CFD loss coefficients if needed.</li>
-          <li><b>Acceptance criteria:</b> demonstrate &lt;55°C at defined ambient + heat load with margin, and document repeatability.</li>
+          <li>Thermal systems architecture and forced convection sizing</li>
+          <li>Iterative energy-balance modeling (converged airflow + fan power coupling)</li>
+          <li>CFD-based system curve development and correlation mindset</li>
+          <li>Fan selection at operating point under filtration-driven pressure drop</li>
+          <li>Electro-mechanical integration within packaging and DFM constraints</li>
         </ul>
-        <p style="margin:10px 0 0; color:var(--muted); font-size:13px;">
-          (This section is here because good thermal design isn’t “CFD said so” — it’s “CFD + data agree.”)
-        </p>
       </div>
     </section>
 
