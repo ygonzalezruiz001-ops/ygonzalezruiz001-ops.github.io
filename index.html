@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Christian Gonzalez Ruiz | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical Engineer focused on structural systems, manufacturing, and simulation (ANSYS/COMSOL). Portfolio + case studies." />
+  <meta name="description" content="Mechanical Engineer focused on mechanical design, simulation (FEA/CFD), and manufacturing integration. Portfolio + case studies." />
 
   <style>
     :root{
@@ -27,7 +27,8 @@
       color: var(--text);
       line-height:1.6;
     }
-    a{color:inherit}
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:0.95}
     .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 80px}
 
     /* Top nav */
@@ -42,10 +43,10 @@
     }
     .brand{font-weight:700; letter-spacing:0.3px}
     .nav a{
-      text-decoration:none; color:var(--muted);
+      color:var(--muted);
       margin-left:16px; font-size:14px;
     }
-    .nav a:hover{color:var(--text)}
+    .nav a:hover{color:var(--text); opacity:1}
 
     /* Hero */
     .hero{padding:52px 0 10px}
@@ -71,7 +72,7 @@
       display:inline-flex; align-items:center; justify-content:center;
       padding:12px 16px; border-radius:10px;
       border:1px solid var(--line);
-      text-decoration:none; font-weight:650; font-size:14px;
+      font-weight:650; font-size:14px;
       background: var(--card);
       transition: transform 0.15s ease, background 0.15s ease;
     }
@@ -126,6 +127,7 @@
       background: var(--chipbg);
       padding:5px 9px; border-radius:999px;
     }
+    .card .btn{margin-top:14px}
 
     /* Skills */
     .skillsGrid{
@@ -174,7 +176,7 @@
 <body>
   <div class="wrap">
     <div class="nav">
-      <div class="brand">Christian Gonzalez Ruiz • Mechanical Engineer </div>
+      <div class="brand">Christian Gonzalez Ruiz</div>
       <div class="navLinks">
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
@@ -185,19 +187,20 @@
     </div>
 
     <section class="hero">
-      <p class="kicker">Mechanical Design • Thermal/Structural • Computer Simulations • Manufacturing </p>
+      <p class="kicker">Mechanical Engineer • Mechanical Design • Simulation (FEA/CFD) • Manufacturing Integration</p>
 
       <h1>If it can fail, I’ll find it. If it won’t fail, I’ll prove it.</h1>
 
       <p class="subtitle">
-I design mechanical systems and verify them using first-principles analysis and simulations, then prototype, test, and iterate until the hardware is production-ready.      </p>
+        I design mechanical systems and verify them using first-principles analysis and simulation, then prototype, test,
+        and iterate until the hardware is production-ready.
+      </p>
 
       <div class="proof">
         <span class="pill">Hyliion: −40 parts (~7%) via architecture consolidation</span>
         <span class="pill">Hyliion: Mass-constrained frame—FEA-driven member optimization (~3× thickness reduction)</span>
         <span class="pill">Vascular: 48h → 4h cycle time (83% faster)</span>
         <span class="pill">Capella: 3 prototype iterations; final unit used for external demo + material redesign from testing</span>
-
       </div>
 
       <div class="btns">
@@ -223,8 +226,8 @@ I design mechanical systems and verify them using first-principles analysis and 
 
           <div class="content">
             <h3>Thermal Systems Architecture for LV Cabinet (Hyliion — Generator Platform)</h3>
-            <p class="meta">Forced Convection • System Curves • Fan & Filter Selection • Validation Planning</p>
-          
+            <p class="meta">Forced Convection • System Curves • Fan &amp; Filter Selection • Validation Planning</p>
+
             <ul class="bullets">
               <li>Defined the cooling approach and presented an end-to-end plan for LV cabinet thermal control.</li>
               <li>Calculated required airflow (volumetric flow rate) from heat load and allowable temperature rise.</li>
@@ -232,7 +235,7 @@ I design mechanical systems and verify them using first-principles analysis and 
               <li>Selected a filtration strategy aligned to the expected operating environment and packaging constraints.</li>
               <li>Planned validation: instrumented thermal testing to confirm temperature limits; CFD planned to refine the system curve.</li>
             </ul>
-          
+
             <div class="chips">
               <span class="chip">Heat Transfer</span>
               <span class="chip">System Curve</span>
@@ -241,39 +244,36 @@ I design mechanical systems and verify them using first-principles analysis and 
               <span class="chip">Validation Testing</span>
               <span class="chip">DFM/Integration</span>
             </div>
-          </div>
 
             <a class="btn" href="hyliion-thermal.html">Open Full Case Study →</a>
           </div>
         </article>
 
-        <!-- HYLIION -->
+        <!-- HYLIION — FRAMES -->
         <article class="card">
           <div class="thumb">
             <img src="karno_2mw.png" alt="Containerized generator frame (Hyliion)">
           </div>
-          <div class="content">
-            <h3>Containerized Energy Generator Frame (Hyliion)</h3>
-            <p class="meta">Structural Development • Weldment Design • Supplier Coordination</p>
 
-            <h3>Containerized Energy Generator Frame (Hyliion — 2 MW & 800 kW)</h3>
+          <div class="content">
+            <h3>Containerized Energy Generator Frames (Hyliion — 2 MW &amp; 800 kW)</h3>
             <p class="meta">Structural Development • Modal/Static FEA • Transport + Handling Loads • Weldment Design</p>
-            
+
             <ul class="bullets">
-              <li>Owned structural verification (ANSYS) for two containerized generator frames (2 MW and 800 kW), starting from a preliminary CAD. </li>
-              <li>Drove design-to-requirements iterations: updated the structural architecture in CAD and re-ran FEA until key load cases / targets were met.</li>
-              <li>Executed load cases across shipping + handling: frequency avoidance (modal), 5g transport accelerations, crane lift (sling angle), forklift pickup, and transverse/longitudinal rigidity checks.</li>
-              <li>Improved dynamic stiffness through targeted bracing/gussets and joint stiffening (e.g., ~4× min natural frequency increase on the 2 MW concept; ~2× on the 800 kW program to meet frequency target).</li>
-              <li>Completed weld sizing to AWS D1.1 using FEA-extracted forces/moments and supported drawing release and prototype fabrication.</li>
+              <li>Owned structural verification (ANSYS) for two containerized generator frames (2 MW and 800 kW), starting from preliminary weldment CAD.</li>
+              <li>Drove design-to-requirements iterations: updated the structure in CAD (bracing/gussets/thickness tuning) and re-ran FEA to close gaps to targets.</li>
+              <li>Executed shipping + handling load cases: modal frequency avoidance, 5g transport accelerations, crane lift (sling angle), forklift pickup, and stiffness checks.</li>
+              <li>Improved dynamic stiffness through targeted joint stiffening and bracing (raised minimum natural frequency toward program targets).</li>
+              <li>Completed weld sizing to AWS D1.1 using FEA-extracted forces/moments and supported drawing release for prototype fabrication.</li>
             </ul>
-            
+
             <div class="chips">
               <span class="chip">ANSYS</span>
               <span class="chip">Modal Analysis</span>
               <span class="chip">Transport Loads</span>
               <span class="chip">Lifting/Forklift</span>
-              <span class="chip">Stacking</span>
               <span class="chip">AWS D1.1</span>
+              <span class="chip">Weldments</span>
             </div>
 
             <a class="btn" href="hyliion.html">Open Full Case Study →</a>
@@ -283,20 +283,21 @@ I design mechanical systems and verify them using first-principles analysis and 
         <!-- CAPELLA -->
         <article class="card">
           <div class="thumb">
-            <img src="hydrogen.png" alt="High-pressure hydrogen generation system (Capella Partners)">
+            <img src="hydrogen.png" alt="Hydrogen generation system prototyping (Capella Partners)">
           </div>
+
           <div class="content">
             <h3>Hydrogen Generation System Prototyping (Capella Partners)</h3>
             <p class="meta">Mechanical Design • Prototyping • SolidWorks CAD/CFD • Sealing/Isolation Testing • DFM/DFA</p>
-            
+
             <ul class="bullets">
               <li>Reconstructed and documented an existing prototype in SolidWorks and ran preliminary CFD to identify recirculation/stagnation regions that informed the next iteration.</li>
               <li>Led Prototype v2 redesign: full CAD + basic CFD, improving flow path smoothness while keeping the assembly manufacturable and serviceable.</li>
-              <li>Machined and assembled Prototype v2 in-house (Al 6061, gaskets, acrylic flow-visualization sections); validated internal/external isolation with a dyed-water endurance test (~24 hrs).</li>
-              <li>Performed preliminary joint/fastener sizing and documented calculations for a future pressurized metal build (~400 psi design intent), while using the acrylic prototype for isolation/flow validation.</li>
-              <li>Owned Prototype v3 architecture (CEO concept): symmetric, lower part count, maintainable assembly; produced CAD + basic CFD and built a 3D-printed concept demonstrator for review.</li>
+              <li>Machined and assembled Prototype v2 in-house (Al 6061, gaskets, acrylic flow-visualization sections); validated isolation with a dyed-water endurance test (~24 hrs).</li>
+              <li>Performed preliminary joint/fastener sizing and documented calculations for a future pressurized metal build (~400 psi design intent).</li>
+              <li>Owned Prototype v3 architecture (leadership concept): symmetric, lower part count, maintainable assembly; produced CAD + basic CFD and built a 3D-printed concept demonstrator.</li>
             </ul>
-            
+
             <div class="chips">
               <span class="chip">SolidWorks</span>
               <span class="chip">CFD (Concept)</span>
@@ -315,28 +316,28 @@ I design mechanical systems and verify them using first-principles analysis and 
           <div class="thumb">
             <img src="hypershoe.png" alt="Hypershoe multiphysics simulation project">
           </div>
+
           <div class="content">
             <h3>Hypershoe Optimization (Cadense Capstone)</h3>
-            <p class="meta">COMSOL Multiphysics • FSI • Hyperelastic Materials • Testing & Validation • Rapid Iteration</p>
-            
+            <p class="meta">COMSOL Multiphysics • FSI • Hyperelastic Materials • Testing &amp; Validation • Rapid Iteration</p>
+
             <ul class="bullets">
               <li>Led COMSOL-based FSI + solid mechanics modeling to quantify hysteresis (energy loss) and energy return across candidate designs.</li>
-              <li>Characterized a non-library hyperelastic material via compression tests on a universal test machine; extracted force–displacement data and fit material model parameters for simulation.</li>
+              <li>Characterized a non-library hyperelastic material via compression tests; extracted force–displacement data and fit material model parameters for simulation.</li>
               <li>Validated the simulation workflow by matching COMSOL predictions to physical test data before expanding to new geometries.</li>
               <li>Ran design iterations (shape/thickness/size) to reduce hysteresis, then prototyped and tested concepts to close the loop between analysis and experiments.</li>
-              <li>Supported rapid testing by assembling and using a benchtop impact/compression test rig; benchmarked prototypes against reference footwear and achieved up to ~82% energy return in testing.</li>
+              <li>Supported rapid testing using a benchtop impact/compression rig; benchmarked prototypes and achieved up to ~82% energy return in testing.</li>
               <li>Awarded “Most Technical Project” (top recognition among ~30 capstone teams).</li>
             </ul>
-            
+
             <div class="chips">
               <span class="chip">COMSOL</span>
               <span class="chip">FSI</span>
               <span class="chip">Hyperelastic Modeling</span>
               <span class="chip">Material Characterization</span>
-              <span class="chip">Force–Displacement</span>
-              <span class="chip">Testing & Validation</span>
+              <span class="chip">Testing</span>
+              <span class="chip">Validation</span>
             </div>
-
 
             <a class="btn" href="cadense.html">Open Full Case Study →</a>
           </div>
@@ -347,6 +348,7 @@ I design mechanical systems and verify them using first-principles analysis and 
           <div class="thumb">
             <img src="rotovap.png" alt="Rotary evaporator vacuum system (Vascular BioSciences)">
           </div>
+
           <div class="content">
             <h3>Rotary Evaporator Vacuum System (Vascular BioSciences)</h3>
             <p class="meta">Root Cause Problem Solving • Vacuum System • Process Optimization</p>
@@ -373,9 +375,9 @@ I design mechanical systems and verify them using first-principles analysis and 
     <section id="about" class="section">
       <h2>About</h2>
       <p>
-        I’m a mechanical engineer who lives at the intersection of structural design, simulation, and manufacturing reality.
-        I like problems where the constraint is <em>actually</em> something else (cost, schedule, supplier process capability),
-        and I enjoy turning that into a clean design + measurable results.
+        I’m a mechanical engineer who works at the intersection of design, simulation, and manufacturing reality.
+        I like problems where the real constraint is cost, schedule, or process capability—and translating that into
+        clean hardware that meets requirements.
       </p>
     </section>
 
@@ -384,11 +386,11 @@ I design mechanical systems and verify them using first-principles analysis and 
       <div class="skillsGrid">
         <div class="skill">
           <h3>Simulation</h3>
-          <p>ANSYS (static/modal/buckling) • load paths • BCs • mesh strategy • hand calc sanity checks • validation mindset.</p>
+          <p>ANSYS (static/modal/buckling) • boundary conditions • mesh strategy • hand-calc sanity checks • validation mindset.</p>
         </div>
         <div class="skill">
           <h3>Design + Manufacturing</h3>
-          <p>Weldments • DFM/DFA • drawings • GD&amp;T basics • fixturing/access thinking • supplier constraints.</p>
+          <p>Weldments • DFM/DFA • engineering drawings • fixturing/access thinking • supplier constraints.</p>
         </div>
         <div class="skill">
           <h3>Tools</h3>
@@ -401,7 +403,7 @@ I design mechanical systems and verify them using first-principles analysis and 
       <h2>Writing</h2>
       <p>
         Coming soon: short posts teaching what I’m learning in FEA, simulation best practices, and design decisions.
-        (I’m building a library of “things I wish I knew earlier.”)
+        (A library of “things I wish I knew earlier.”)
       </p>
     </section>
 
