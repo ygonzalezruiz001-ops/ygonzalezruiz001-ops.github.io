@@ -3,230 +3,209 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hypershoe Optimization | Cadense</title>
+  <title>Cadense Capstone | Hypershoe Optimization</title>
+  <meta name="description" content="Cadense capstone: COMSOL-based FSI and hyperelastic material characterization to optimize hysteresis/energy return, validated with experiments and rapid prototyping." />
 
   <style>
-
-.projectImage {
-  width: 60%;          /* makes it about half size */
-  max-width: 700px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 14px;
-  border: 1px solid #262626;
-}
-
-.imageNote {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 13px;
-  color: #8a8a8a;
-  font-style: italic;
-}
-
-    
     :root{
       --bg:#0a0a0a;
       --card:#141414;
-      --line:#262626;
+      --card2:#101010;
       --text:#f2f2f2;
       --muted:#a7a7a7;
+      --line:#262626;
+      --hover:#1b1b1b;
+      --accent:#d6d6d6;
+      --chipbg:#0f0f0f;
+      --max: 980px;
     }
-
+    *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.7;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.65;
     }
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:0.9}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 80px}
 
-    .wrap{
-      max-width:1000px;
-      margin:0 auto;
-      padding:40px 20px 80px;
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 16px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,10,0.78);
+      z-index:10;
     }
+    .brand{font-weight:700; letter-spacing:0.3px; color:var(--text)}
+    .navLinks a{color:var(--muted); margin-left:16px; font-size:14px}
+    .navLinks a:hover{color:var(--text)}
 
-    a{color:inherit}
+    /* Typography */
+    h1{font-size:42px; line-height:1.1; margin:22px 0 10px; font-weight:850}
+    h2{font-size:18px; margin:26px 0 10px; font-weight:850}
+    h3{font-size:16px; margin:16px 0 8px; font-weight:800}
+    p{margin:0 0 12px; color:var(--muted)}
+    .kicker{color:var(--muted); font-size:14px; margin:0 0 12px}
 
-    .back{
-      color:var(--muted);
-      text-decoration:none;
-      font-size:14px;
-    }
-
-    .back:hover{color:var(--text)}
-
-    h1{
-      font-size:38px;
-      margin:16px 0 8px;
-    }
-
-    .meta{
-      color:var(--muted);
-      margin-bottom:30px;
-    }
-
-    .imageWrap{
-      margin:30px 0;
-      border-radius:18px;
-      overflow:hidden;
+    /* Buttons */
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 0;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:10px;
       border:1px solid var(--line);
-      background:var(--card);
+      background: var(--card);
+      font-weight:650; font-size:14px;
+    }
+    .btn:hover{background: var(--hover)}
+    .btn.primary{
+      background: linear-gradient(180deg, #1b1b1b 0%, #121212 100%);
+      border-color:#333;
     }
 
-    .imageWrap img{
+    /* Image */
+    .imgCard{
+      margin-top:14px;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .imgWrap{
+      background: var(--card2);
+      border-bottom:1px solid var(--line);
+    }
+    .imgWrap img{
       width:100%;
+      height:320px;
+      object-fit:cover;
       display:block;
     }
+    .imgNote{padding:12px 14px; font-size:13px; color:var(--muted)}
 
-    .section{
-      margin-top:40px;
-    }
-
-    .section h2{
-      font-size:18px;
-      margin-bottom:10px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      padding:22px;
-      border-radius:16px;
-      margin-top:14px;
-    }
-
-    ul{
-      margin-top:8px;
-      padding-left:20px;
-      color:var(--muted);
-    }
-
+    /* Impact snapshot */
     .impactGrid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-      gap:16px;
-      margin-top:20px;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+      margin-top:12px;
     }
-
     .impact{
-      background:var(--card);
+      grid-column: span 6;
+      background: var(--card);
       border:1px solid var(--line);
-      padding:18px;
       border-radius:16px;
+      padding:14px 14px 12px;
+    }
+    .impact strong{display:block; font-size:14px; color:var(--text); margin-bottom:4px}
+    .impact span{display:block; font-size:13px; color:var(--muted)}
+
+    /* Bullets + chips */
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    li{margin:8px 0}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      font-size:12px; color:var(--accent);
+      border:1px solid #333;
+      background: var(--chipbg);
+      padding:5px 9px; border-radius:999px;
     }
 
-    .impact strong{
-      font-size:20px;
-      display:block;
-      margin-bottom:4px;
+    /* Callout */
+    .callout{
+      margin-top:12px;
+      background: linear-gradient(180deg, #141414 0%, #101010 100%);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      color:var(--muted);
+      font-size:14px;
     }
+    .callout strong{color:var(--text)}
 
     .footer{
-      margin-top:60px;
+      margin-top:46px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
       color:var(--muted);
       font-size:13px;
-      border-top:1px solid var(--line);
-      padding-top:20px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+
+    @media(max-width: 900px){
+      h1{font-size:34px}
+      .navLinks{display:none}
+      .impact{grid-column: span 12}
+      .imgWrap img{height:240px}
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
-    <a class="back" href="index.html">← Back to Portfolio</a>
+    <div class="nav">
+      <div class="brand">Christian Gonzalez Ruiz</div>
+      <div class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="hyliion.html">Hyliion</a>
+        <a href="capella.html">Hydrogen</a>
+        <a href="vascular.html">Rotovap</a>
+        <a href="#blog">Blog</a>
+      </div>
+    </div>
 
     <h1>Hypershoe Optimization</h1>
-    <div class="meta">
-      Cadense Capstone Project • Multiphysics Simulation • FSI • Impact Testing
+    <p class="kicker">Cadense Capstone • COMSOL Multiphysics (FSI) • Material Characterization • Testing & Validation</p>
+
+    <div class="imgCard">
+      <div class="imgWrap">
+        <!-- Update filename if needed -->
+        <img src="hypershoe.png" alt="Hypershoe capstone project concept and testing">
+      </div>
+      <div class="imgNote">Project visuals shown at a high level. Detailed geometry and raw test datasets omitted for brevity.</div>
     </div>
 
-    <div class="imageWrap">
-      <img src="hypershoe.png" alt="Hypershoe multiphysics simulation" class="projectImage">
-      <p class="imageNote">
-        *Concept visualization. Final product details remain confidential.*
-      </p>
-    </div>
-
-
-    <div class="section">
-      <h2>Project Overview</h2>
-      <div class="card">
-        Designed and optimized a performance footwear system using coupled
-        structural mechanics, CFD, and fluid-structure interaction (FSI)
-        simulations in COMSOL Multiphysics.
-        <br><br>
-        The objective was to understand how dynamic impact forces interact
-        with internal fluid regions and structural geometry to improve
-        energy absorption and performance under loading.
+    <h2>Impact Snapshot</h2>
+    <div class="impactGrid">
+      <div class="impact">
+        <strong>Simulation-to-test workflow</strong>
+        <span>Built a COMSOL modeling pipeline validated against physical compression data before exploring new geometries.</span>
+      </div>
+      <div class="impact">
+        <strong>Material model from experiments</strong>
+        <span>Generated force–displacement curves via UTM testing and fit hyperelastic parameters for simulation input.</span>
+      </div>
+      <div class="impact">
+        <strong>Rapid iteration loop</strong>
+        <span>Used simulation + prototyping + quick tests to reduce hysteresis and improve energy return.</span>
+      </div>
+      <div class="impact">
+        <strong>Award</strong>
+        <span>Won “Most Technical Project” (top recognition among ~30 capstone teams).</span>
       </div>
     </div>
 
-    <div class="section">
-      <h2>Technical Scope</h2>
-      <div class="card">
-        <ul>
-          <li>Performed solid mechanics simulation for impact loading conditions.</li>
-          <li>Conducted CFD analysis to model internal fluid behavior.</li>
-          <li>Coupled solid + fluid domains using FSI for realistic response prediction.</li>
-          <li>Optimized geometry for improved stress distribution and energy absorption.</li>
-          <li>Validated simulation trends through physical impact testing.</li>
-        </ul>
-      </div>
+    <div class="callout">
+      <strong>Goal:</strong> quantify hysteresis (energy loss) and increase energy return for a fluid-filled, hyperelastic structure under compression—then verify with experiments.
     </div>
 
-    <div class="section">
-      <h2>Impact Testing & Validation</h2>
-      <div class="card">
-        Designed and built a custom impact testing apparatus to validate simulation results.
-        <br><br>
-        Physical drop testing allowed comparison between predicted stress distribution,
-        deformation patterns, and real-world behavior.
-      </div>
-    </div>
+    <h2>Overview</h2>
+    <p>
+      This capstone focused on optimizing the mechanical response of a fluid-structure system intended to absorb and return energy under cyclic compression.
+      I owned the simulation and validation workflow: defining the metrics, building COMSOL models, characterizing the material experimentally, validating the models,
+      and iterating designs through prototype testing.
+    </p>
 
-    <div class="section">
-      <h2>Impact Snapshot</h2>
-
-      <div class="impactGrid">
-        <div class="impact">
-          <strong>Multiphysics</strong>
-          Solid + CFD + FSI coupling
-        </div>
-
-        <div class="impact">
-          <strong>Built Hardware</strong>
-          Custom impact testing rig
-        </div>
-
-        <div class="impact">
-          <strong>Awarded</strong>
-          Most Technical Project
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Key Skills Demonstrated</h2>
-      <div class="card">
-        <ul>
-          <li>Multiphysics simulation (COMSOL)</li>
-          <li>Fluid-Structure Interaction modeling</li>
-          <li>Dynamic loading analysis</li>
-          <li>Experimental validation design</li>
-          <li>Engineering judgment between simulation & physical testing</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer">
-      © Christian Gonzalez Ruiz
-    </div>
-
-  </div>
-</body>
-</html>
+    <h2>What I Did</h2>
+    <ul>
+      <li>Led COMSOL-based modeling (solid mechanics + CFD + FSI) to estimate force–displacement behavior and hysteresis across candidate geometries.</li>
+      <li>Extracted force and displacement outputs from COMSOL, plotted hysteresis curves, and used the results to compare design variants.</li>
+      <li>Characterized a hyperelastic material not available in COMSOL libraries by running compression tests on a universal testing machine (UTM) and collecting force–displacement data.</li>
+      <li>Fit material model parameters from experimental data and fed them into COMSOL to represent the measured hyperelastic behavior.</li>
+      <li>Validated the baseline simulation by matching the tested prototype geometry and comparing predicted vs. measured force–displacement response.</li>
+      <li>Performed parametric design iteration (shape/thickness/size) to reduce hysteresis, then prototyped and tested candidate designs to confirm trends.</li>
+      <li>Supported rapid testing by assembling and using a b
