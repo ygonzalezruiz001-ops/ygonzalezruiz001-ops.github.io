@@ -3,210 +3,280 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vascular BioSciences | Rotary Evaporator Vacuum System Redesign</title>
+  <title>Vascular BioSciences | Mechanical Engineering Projects</title>
+  <meta name="description" content="Vascular BioSciences: catheter support fixture redesign, pediatric catheter feasibility testing, and rotovap vacuum bring-up. Prototyping, testing, and manufacturing-focused engineering." />
 
   <style>
     :root{
       --bg:#0a0a0a;
       --card:#141414;
+      --card2:#101010;
       --text:#f2f2f2;
       --muted:#a7a7a7;
       --line:#262626;
       --hover:#1b1b1b;
+      --accent:#d6d6d6;
+      --chipbg:#0f0f0f;
+      --max: 980px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.7;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.65;
     }
-    a{color:inherit}
-    .wrap{max-width:900px; margin:0 auto; padding:24px 18px 80px}
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:0.9}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 80px}
 
+    /* Top nav */
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:10px 0 18px;
+      padding:10px 0 16px;
       border-bottom:1px solid var(--line);
       position:sticky; top:0;
-      background:rgba(10,10,10,0.85);
-      backdrop-filter:blur(10px);
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,10,0.78);
       z-index:10;
     }
-    .brand{font-weight:700; letter-spacing:0.3px}
-    .nav a{
-      text-decoration:none;
-      color:var(--muted);
-      margin-left:14px;
-      font-size:14px;
-    }
-    .nav a:hover{color:var(--text)}
+    .brand{font-weight:700; letter-spacing:0.3px; color:var(--text)}
+    .navLinks a{color:var(--muted); margin-left:16px; font-size:14px}
+    .navLinks a:hover{color:var(--text)}
 
-    h1{font-size:34px; margin:26px 0 8px; line-height:1.15}
-    .sub{color:var(--muted); margin:0 0 18px}
+    /* Typography */
+    h1{font-size:42px; line-height:1.1; margin:22px 0 10px; font-weight:850}
+    h2{font-size:18px; margin:26px 0 10px; font-weight:850}
+    h3{font-size:16px; margin:16px 0 8px; font-weight:800}
+    p{margin:0 0 12px; color:var(--muted)}
+    .kicker{color:var(--muted); font-size:14px; margin:0 0 12px}
 
-    .heroImg{
-      margin:18px 0 18px;
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:10px;
       border:1px solid var(--line);
-      border-radius:14px;
-      overflow:hidden;
-      background:var(--card);
+      background: var(--card);
+      font-weight:650; font-size:14px;
     }
-    .heroImg img{
+    .btn:hover{background: var(--hover)}
+    .btn.primary{
+      background: linear-gradient(180deg, #1b1b1b 0%, #121212 100%);
+      border-color:#333;
+    }
+
+    /* Image */
+    .imgCard{
+      margin-top:14px;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .imgWrap{
+      background: var(--card2);
+      border-bottom:1px solid var(--line);
+    }
+    .imgWrap img{
       width:100%;
       height:320px;
       object-fit:cover;
       display:block;
     }
+    .imgNote{padding:12px 14px; font-size:13px; color:var(--muted)}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:16px;
-      margin-top:14px;
-    }
-    .card h2{
-      font-size:15px;
-      margin:0 0 10px;
-      text-transform:uppercase;
-      letter-spacing:0.12em;
-    }
-    .card p,.card li{color:var(--muted); font-size:14px}
-    ul{margin:8px 0 0; padding-left:18px}
-
-    .kpis{
+    /* Impact snapshot */
+    .impactGrid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns: repeat(12, 1fr);
       gap:12px;
       margin-top:12px;
     }
-    .kpi{
+    .impact{
+      grid-column: span 6;
+      background: var(--card);
       border:1px solid var(--line);
-      border-radius:12px;
-      padding:12px;
-      background:#101010;
+      border-radius:16px;
+      padding:14px 14px 12px;
     }
-    .kpi b{
-      display:block;
-      color:var(--text);
-      font-size:16px;
-      margin-bottom:4px;
+    .impact strong{display:block; font-size:14px; color:var(--text); margin-bottom:4px}
+    .impact span{display:block; font-size:13px; color:var(--muted)}
+
+    /* Bullets + chips */
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    li{margin:8px 0}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      font-size:12px; color:var(--accent);
+      border:1px solid #333;
+      background: var(--chipbg);
+      padding:5px 9px; border-radius:999px;
     }
 
-    .btn{
-      display:inline-block;
-      margin-top:14px;
-      padding:11px 14px;
-      border-radius:10px;
-      border:1px solid var(--line);
-      text-decoration:none;
-      background:#151515;
-      transition: background 0.15s ease, transform 0.15s ease;
+    /* Divider */
+    .divider{
+      margin:22px 0 0;
+      border-top:1px solid var(--line);
+      opacity:0.9;
     }
-    .btn:hover{background:var(--hover); transform: translateY(-1px)}
 
-    @media(max-width:800px){
-      .kpis{grid-template-columns:1fr}
-      .heroImg img{height:220px}
+    /* Callout */
+    .callout{
+      margin-top:12px;
+      background: linear-gradient(180deg, #141414 0%, #101010 100%);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .callout strong{color:var(--text)}
+
+    .footer{
+      margin-top:46px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+
+    @media(max-width: 900px){
+      h1{font-size:34px}
+      .navLinks{display:none}
+      .impact{grid-column: span 12}
+      .imgWrap img{height:240px}
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
     <div class="nav">
       <div class="brand">Christian Gonzalez Ruiz</div>
-      <div>
+      <div class="navLinks">
         <a href="index.html">Home</a>
         <a href="hyliion.html">Hyliion</a>
         <a href="capella.html">Hydrogen</a>
-        <a href="vascular.html">Rotovap</a>
-        <a href="blog.html">Blog</a>
+        <a href="cadense.html">Cadense</a>
+        <a href="vascular.html">Vascular</a>
       </div>
     </div>
 
-    <h1>Rotary Evaporator Vacuum System Redesign</h1>
-    <p class="sub">Vascular BioSciences • Jan 2024 – Jun 2025 • Process Optimization & Root Cause Problem Solving</p>
+    <h1>Vascular BioSciences — Mechanical Engineering Projects</h1>
+    <p class="kicker">Mechanical Engineering Intern • Goleta, CA • Jan 2024 – Aug 2025</p>
 
-    <div class="heroImg">
-      <!-- Replace with your real image. Recommended filename: assets/rotovap.jpg -->
-      <img src="rotovap.png" alt="Rotary evaporator vacuum system redesign">
+    <div class="imgCard">
+      <div class="imgWrap">
+        <!-- If you have a catheter fixture photo/render, replace this filename -->
+        <img src="rotovap.png" alt="Vascular BioSciences projects (representative image)">
+      </div>
+      <div class="imgNote">Representative visual. Specific device geometries, clinical details, and proprietary data omitted due to confidentiality.</div>
     </div>
 
-    <div class="card">
-      <h2>Impact Snapshot</h2>
-      <div class="kpis">
-        <div class="kpi"><b>48h → 4h</b><span>83% cycle time reduction</span></div>
-        <div class="kpi"><b>12+ months</b><span>Validated via daily use</span></div>
+    <h2>Impact Snapshot</h2>
+    <div class="impactGrid">
+      <div class="impact">
+        <strong>Catheter workflow improvement</strong>
+        <span>Designed a mechanical support fixture intended to reduce required operators from 2 → 1 and stabilize catheter position during tissue capture.</span>
+      </div>
+      <div class="impact">
+        <strong>Rapid iteration + build</strong>
+        <span>Completed 7 design iterations using 3D printed prototypes and machined stainless components.</span>
+      </div>
+      <div class="impact">
+        <strong>Pediatric feasibility</strong>
+        <span>Tested reduced-diameter catheter concepts (8 Fr → 6 Fr) and verified suction performance via vacuum experiments.</span>
+      </div>
+      <div class="impact">
+        <strong>Rotovap capability restored</strong>
+        <span>Brought up vacuum configuration (water aspirator) enabling normal evaporation performance and improving lab throughput.</span>
       </div>
     </div>
 
-    <div class="card">
-      <h2>Problem</h2>
-      <p>
-        The drug development team was bottlenecked by the rotary evaporator (rotovap) cycle time:
-        ~48 hours per evaporation cycle. The constraint was not technical performance—it was operating cost.
-        Continuous electric vacuum pumps were too expensive to run continuously for a startup.
-      </p>
+    <div class="callout">
+      <strong>Theme:</strong> hands-on engineering—mechanical design, prototyping, fabrication, and test-driven iteration to de-risk hardware and improve usability.
     </div>
 
-    <div class="card">
-      <h2>Root Cause Analysis</h2>
-      <ul>
-        <li>48-hour cycle time limited research velocity and experimentation throughput.</li>
-        <li>Primary driver: no continuous vacuum capability in daily operation.</li>
-        <li>Why no vacuum? Electric pumps were cost-prohibitive to run continuously.</li>
-        <li><b>Root cause:</b> economic constraint (operating cost), not a fundamental technical limitation.</li>
-      </ul>
+    <h2 id="catheter">1) Catheter Support System Redesign</h2>
+    <p>
+      The existing workflow required awkward handling and multiple operators. I identified usability issues, proposed a redesign direction,
+      and developed a mechanical support fixture concept to improve repeatability and reduce operator burden.
+    </p>
+
+    <ul>
+      <li>Identified ergonomic/procedural limitations in the current workflow and proposed a redesign approach adopted by the team (development continued beyond my internship).</li>
+      <li>Designed a fully mechanical catheter support fixture intended to improve handling, reduce required operators from 2 → 1, and minimize catheter motion during tissue capture.</li>
+      <li>Completed 7 design iterations; built prototypes using 3D-printed PLA and machined stainless components.</li>
+      <li>Performed in-house machining operations (drilling, milling, tapping, bandsawing) and assembled prototypes for evaluation.</li>
+      <li>Applied DFM/DFA and Lean thinking to simplify geometry, reduce assembly steps, and improve manufacturability.</li>
+    </ul>
+
+    <div class="chips">
+      <span class="chip">Mechanism Design</span>
+      <span class="chip">Prototyping</span>
+      <span class="chip">Machining</span>
+      <span class="chip">DFM/DFA</span>
+      <span class="chip">Ergonomics</span>
+      <span class="chip">Iteration</span>
     </div>
 
-    <div class="card">
-      <h2>Solution: Water Aspirator Vacuum (Venturi Effect)</h2>
-      <ul>
-        <li>Implemented a venturi-based water aspirator: high-velocity water flow creates a low-pressure region that draws vacuum.</li>
-        <li>Designed and assembled the system using standard NPT fittings and clear PVC tubing.</li>
-        <li>Systematically troubleshot the vacuum path:
-          <ul>
-            <li>Sealed leaks with high-vacuum silicone grease at interfaces</li>
-            <li>Optimized tubing diameters for flow / pressure drop tradeoffs</li>
-            <li>Validated connections via pressure/leak checks</li>
-          </ul>
-        </li>
-        <li>Created a simple SOP for end-users: “turn on faucet gradually to create vacuum.”</li>
-      </ul>
+    <div class="divider"></div>
+
+    <h2 id="pediatric">2) Pediatric Catheter Feasibility Study</h2>
+    <p>
+      Initiated a feasibility study to assess whether reduced-diameter catheter concepts could maintain safe and effective suction performance.
+      Focused on experimental testing and engineering recommendations.
+    </p>
+
+    <ul>
+      <li>Designed and executed vacuum experiments to evaluate suction performance as tube diameter was reduced (8 Fr down to 6 Fr).</li>
+      <li>Built custom test prototypes using stainless coiled tubing and fixture components to enable repeatable testing.</li>
+      <li>Demonstrated via testing that pediatric-compatible designs maintained effective delta-P for suction (measured ~1.6–2.3 inHg in testing).</li>
+      <li>Delivered recommendations and documented future modifications, including potential geometric optimizations at the tip.</li>
+    </ul>
+
+    <div class="chips">
+      <span class="chip">Experimental Testing</span>
+      <span class="chip">Vacuum Systems</span>
+      <span class="chip">Feasibility Study</span>
+      <span class="chip">Prototyping</span>
+      <span class="chip">Documentation</span>
+      <span class="chip">Design Recommendations</span>
     </div>
 
-    <div class="card">
-      <h2>Engineering Rationale</h2>
-      <ul>
-        <li>Lower absolute pressure reduces solvent boiling point → faster evaporation at the same temperature.</li>
-        <li>Enabled faster evaporation without overheating temperature-sensitive compounds.</li>
-      </ul>
+    <div class="divider"></div>
+
+    <h2 id="rotovap">3) Rotary Evaporator Vacuum Bring-Up</h2>
+    <p>
+      The rotovap was not achieving vacuum consistently, which prevented normal evaporation performance. I brought up a reliable vacuum configuration
+      and documented the setup so the lab could repeat it.
+    </p>
+
+    <ul>
+      <li>Identified that rotovap runs were bottlenecked by the system not achieving vacuum, preventing normal evaporation performance.</li>
+      <li>Implemented and verified a water-aspirator vacuum setup to reliably pull vacuum and stabilize operation.</li>
+      <li>Restored expected process performance—reducing typical cycle time from ~48 hours to ~4 hours and enabling higher throughput.</li>
+      <li>Documented the setup and operating procedure so results were repeatable across users.</li>
+    </ul>
+
+    <div class="chips">
+      <span class="chip">Troubleshooting</span>
+      <span class="chip">Vacuum Bring-Up</span>
+      <span class="chip">Lab Infrastructure</span>
+      <span class="chip">Process Enablement</span>
+      <span class="chip">Documentation</span>
     </div>
 
-    <div class="card">
-      <h2>Validation</h2>
-      <ul>
-        <li>Validated through 12+ months of daily use with consistent 4-hour cycle times across repeated experiments.</li>
-        <li>Outcome: research throughput unlocked 4 cycles/day vs. 2 cycles per ~48 hours.</li>
-      </ul>
+    <div class="footer">
+      <div>© <span id="year"></span> Christian Gonzalez Ruiz</div>
+      <div><a class="btn" href="index.html">← Back to Home</a></div>
     </div>
-
-    <div class="card">
-      <h2>What This Demonstrates</h2>
-      <ul>
-        <li><b>Root cause thinking:</b> reframed the problem from “pump cost” to “deliver vacuum function within constraints.”</li>
-        <li><b>System-level optimization:</b> physics + economics + operations, not just “build a part.”</li>
-        <li><b>Troubleshooting discipline:</b> component-level validation → full system integration.</li>
-        <li><b>Metrics-driven impact:</b> quantified and sustained improvements.</li>
-      </ul>
-    </div>
-
-    <a class="btn" href="index.html">← Back to Home</a>
-
   </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
