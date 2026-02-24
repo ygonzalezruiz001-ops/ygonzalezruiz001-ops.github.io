@@ -150,6 +150,30 @@
     }
     .callout b{color: var(--text)}
 
+    /* Equation block */
+    .eq{
+      margin-top:10px;
+      background:#0f0f0f;
+      border:1px solid #2b2b2b;
+      border-radius:14px;
+      padding:12px 12px 10px;
+      color:var(--muted);
+      font-size:14px;
+      overflow-x:auto;
+    }
+    .eq .eqTitle{
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin:0 0 8px;
+    }
+    .eq .eqNote{
+      margin-top:8px;
+      font-size:13px;
+      color:rgba(255,255,255,0.55);
+    }
+
     .footer{
       margin-top:44px;
       padding-top:16px;
@@ -164,6 +188,15 @@
       .col{grid-column: span 12}
     }
   </style>
+
+  <!-- MathJax (LaTeX rendering) -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 
 <body>
@@ -234,6 +267,16 @@
           <b>Note on confidentiality:</b> Specific component part numbers, heat loads by module, airflow targets, and absolute temperature limits are intentionally not listed.
           The focus here is the engineering workflow, conservative assumptions, and verification approach.
         </div>
+
+        <div class="eq">
+          <div class="eqTitle">Notation (used below)</div>
+          \[
+            \dot{Q}=\text{heat rate (W)},\quad \dot{m}=\text{mass flow (kg/s)},\quad \dot{V}=\text{volumetric flow (m}^3\!/s)
+          \]
+          \[
+            c_p=\text{specific heat},\quad \rho=\text{air density},\quad \Delta T = T_{out}-T_{in},\quad \Delta P=\text{pressure drop}
+          \]
+        </div>
       </div>
     </section>
 
@@ -248,6 +291,23 @@
             Included fan electrical power as part of the effective thermal load where applicable, and documented modeling assumptions
             (steady state, constant properties, negligible KE/PE).
           </p>
+
+          <div class="eq">
+            <div class="eqTitle">Equations used</div>
+            \[
+              \dot{Q}_{tot} \approx \dot{m}\,c_p\,(T_{out}-T_{in})
+            \]
+            \[
+              \dot{m} = \rho\,\dot{V}\quad\Rightarrow\quad
+              \dot{V} \approx \frac{\dot{Q}_{tot}}{\rho\,c_p\,\Delta T}
+            \]
+            \[
+              \dot{Q}_{tot} = \dot{Q}_{electronics} + \alpha\,\dot{W}_{fan}
+            \]
+            <div class="eqNote">
+              \(\alpha\) captures whether fan electrical input is treated as an added cabinet heat load (often \(\alpha\approx 1\) for conservative sizing when fan is inside/thermally coupled).
+            </div>
+          </div>
         </div>
 
         <div class="col">
@@ -257,6 +317,28 @@
             Fan selection was performed at the coupled operating point (fan curve ∩ system curve), with conservative allowances for filter loading.
             CFD remains an optional refinement to further de-risk airflow distribution and hotspot behavior prior to full hardware build.
           </p>
+
+          <div class="eq">
+            <div class="eqTitle">Equations used</div>
+            \[
+              \Delta P_{sys}(\dot{V}) = \Delta P_{filter}(\dot{V}) + \Delta P_{minor}(\dot{V}) + \Delta P_{friction}(\dot{V})
+            \]
+            \[
+              \Delta P_{minor} \approx \sum K_i\left(\frac{\rho}{2}\right)\left(\frac{\dot{V}}{A_i}\right)^2
+            \]
+            \[
+              \Delta P_{friction} \approx \sum \left(f\,\frac{L}{D}\right)\left(\frac{\rho}{2}\right)\left(\frac{\dot{V}}{A}\right)^2
+            \]
+            \[
+              \text{Operating point: }\;\Delta P_{fan}(\dot{V}^*)=\Delta P_{sys}(\dot{V}^*)
+            \]
+            \[
+              \Delta P_{filter,dirty} \approx SF \cdot \Delta P_{filter,clean}
+            \]
+            <div class="eqNote">
+              \(K_i\) = loss coefficients (bends, contractions, screens, exits). \(SF\) = filter loading safety factor (e.g., “dirty filter” allowance).
+            </div>
+          </div>
         </div>
       </div>
 
@@ -285,6 +367,22 @@
           <li>Designed to the upper bound of the observed offset as a conservative basis to maintain margin to electronics temperature limits.</li>
         </ul>
 
+        <div class="eq">
+          <div class="eqTitle">Equations used</div>
+          \[
+            T_{MCU} \approx T_{bulk} + \Delta T_{offset}
+          \]
+          \[
+            T_{MCU,design} = T_{bulk,design} + \Delta T_{offset,max}
+          \]
+          \[
+            \text{Margin} = T_{MCU,limit} - T_{MCU,design}
+          \]
+          <div class="eqNote">
+            \(\Delta T_{offset,max}\) is the conservative bound observed across operating modes (captures hotspot risk from non-uniform flow / recirculation).
+          </div>
+        </div>
+
         <div class="chips">
           <span class="chip">Correlation</span>
           <span class="chip">Margin</span>
@@ -304,6 +402,19 @@
           <li><b>Ingress:</b> geometry and sealing chosen to support environmental protection goals without compromising serviceability.</li>
         </ul>
 
+        <div class="eq">
+          <div class="eqTitle">Useful relationships (design checks)</div>
+          \[
+            \Delta P_{added} \approx K_{added}\left(\frac{\rho}{2}\right)\left(\frac{\dot{V}}{A}\right)^2
+          \]
+          \[
+            \text{Face velocity: } V_{face}=\frac{\dot{V}}{A_{filter}}
+          \]
+          <div class="eqNote">
+            Practically: keep \(K_{added}\) small (avoid sharp turns / sudden contractions), and reduce \(V_{face}\) spikes to improve filter utilization and limit pressure loss.
+          </div>
+        </div>
+
         <div class="chips">
           <span class="chip">Flow Distribution</span>
           <span class="chip">Sealing</span>
@@ -322,6 +433,22 @@
           <li><b>Acceptance:</b> demonstrate compliance with bulk outlet air requirement and maintain margin to critical electronics temperature limits.</li>
           <li><b>Optional CFD:</b> used prior to full build if hotspot margin is tight or to refine airflow distribution and internal temperature gradients.</li>
         </ul>
+
+        <div class="eq">
+          <div class="eqTitle">What gets validated</div>
+          \[
+            \Delta T_{meas}=T_{out,meas}-T_{in,meas}
+          \]
+          \[
+            \dot{Q}_{inferred}\approx \rho\,\dot{V}_{meas}\,c_p\,\Delta T_{meas}
+          \]
+          \[
+            \text{Pass if: } T_{bulk,out}\le T_{bulk,limit}\;\;\text{and}\;\; T_{MCU}\le T_{MCU,limit}\;(\text{with margin})
+          \]
+          <div class="eqNote">
+            You can use measured \(\dot{V}\) (or inferred from fan operating point + \(\Delta P\)) to cross-check that the cabinet is running at the intended operating point.
+          </div>
+        </div>
 
         <div class="chips">
           <span class="chip">Test Plan</span>
