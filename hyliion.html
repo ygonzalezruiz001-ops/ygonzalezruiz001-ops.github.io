@@ -13,12 +13,13 @@
       --muted:#a7a7a7;
       --line:#262626;
       --hover:#1b1b1b;
+      --code:#101010;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
     a{color:inherit}
     .wrap{max-width:900px;margin:0 auto;padding:24px 18px 80px}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px);z-index:10}
     .brand{font-weight:700;letter-spacing:0.3px}
     .nav a{text-decoration:none;color:var(--muted);margin-left:14px;font-size:14px}
     .nav a:hover{color:var(--text)}
@@ -30,9 +31,26 @@
     .card h2{font-size:15px;margin:0 0 10px;text-transform:uppercase;letter-spacing:0.12em}
     .card p,.card li{color:var(--muted);font-size:14px}
     ul{margin:8px 0 0;padding-left:18px}
+
     .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
     .kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#101010}
     .kpi b{display:block;color:var(--text);font-size:16px;margin-bottom:4px}
+
+    .eq{
+      margin-top:10px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--code);
+      padding:12px;
+      overflow:auto;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      font-size:12.5px;
+      color:#d9d9d9;
+      line-height:1.55;
+      white-space:pre;
+    }
+    .eqNote{margin:10px 0 0;color:var(--muted);font-size:13px}
+
     .btn{display:inline-block;margin-top:14px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);text-decoration:none;background:#151515}
     .btn:hover{background:var(--hover)}
     @media(max-width:800px){.kpis{grid-template-columns:1fr}.heroImg img{height:220px}}
@@ -53,63 +71,96 @@
     </div>
 
     <h1>Containerized Energy Generator Frame</h1>
-    <p class="sub">Hyliion • Aug 2025 – Present • Structural Development & Weldment Design</p>
+    <p class="sub">Hyliion • Aug 2025 – Present • Structural Development, FEA Verification & Weldment Design</p>
 
     <div class="heroImg">
-      <!-- Replace with your real image -->
       <img src="karno_2mw.png" alt="Hyliion containerized generator frame">
-
     </div>
 
     <div class="card">
       <h2>Impact Snapshot</h2>
       <div class="kpis">
-        <div class="kpi"><b>~40 parts eliminated</b><span>~7% reduction from ~600-part baseline</span></div>
-        <div class="kpi"><b>3/8&quot; → 1/8&quot;</b><span>Reduced C-channel thickness where margins allowed</span></div>
-        <div class="kpi"><b>8 Hz → 31 Hz</b><span>Raised minimum natural frequency via bracing/gussets</span></div>
-        <div class="kpi"><b>AWS D1.1 + ANSYS</b><span>Weld stress checks using FEA-extracted forces/moments</span></div>
+        <div class="kpi"><b>~40 parts eliminated</b><span>~7% reduction from a ~600-part baseline via architecture simplification</span></div>
+        <div class="kpi"><b>Localized thickness optimization</b><span>Reduced select C-channel members from 3/8&quot; to 1/8&quot; where margins allowed</span></div>
+        <div class="kpi"><b>~4× higher minimum natural frequency</b><span>Stiffness added where it mattered (bracing + gussets), not blanket thickening</span></div>
+        <div class="kpi"><b>AWS D1.1 + ANSYS-driven loads</b><span>Weld sizing checks using FEA-extracted forces and moments</span></div>
       </div>
+      <p class="eqNote">Note: metrics shown are representative and rounded for portfolio context.</p>
     </div>
 
     <div class="card">
       <h2>Overview</h2>
       <p>
-        Leading structural design and analysis for containerized megawatt-scale energy generator systems from concept through detailed design review.
-        Responsible for frame architecture optimization, AWS D1.1 weld stress analysis, supplier coordination, and DFM.
+        Owned structural design and verification for containerized, megawatt-scale generator frames through detailed design review and release.
+        Scope included load-case definition, architecture optimization, weldment detailing, and manufacturability alignment with fabrication partners
+        to ensure the design met stiffness, strength, and integration requirements.
       </p>
     </div>
 
     <div class="card">
       <h2>Structural Optimization</h2>
       <ul>
-        <li>Applied “every part must earn its keep” philosophy to remove non-load-carrying components.</li>
-        <li>Validated load paths with ANSYS using von Mises + strain energy reviews under 5g transport and 3g operational cases.</li>
-        <li>Reran models after removals to ensure margins and stiffness requirements were preserved.</li>
+        <li>Applied a “every part must earn its keep” approach to remove non-essential components while preserving load paths and assembly intent.</li>
+        <li>Verified performance in ANSYS using stress, deflection, and strain-energy review across 5g transport and 3g operational conditions.</li>
+        <li>Iterated designs with rapid re-analysis to confirm margins and stiffness targets after each simplification cycle.</li>
       </ul>
     </div>
 
     <div class="card">
-      <h2>Dynamics / Resonance Avoidance</h2>
+      <h2>Dynamics / Resonance De-risking</h2>
       <ul>
-        <li>Raised minimum natural frequency from 8 Hz to 31 Hz via targeted X-bracing and gusseting.</li>
-        <li>Goal: avoid rotating equipment excitation frequencies to prevent resonance.</li>
+        <li>Increased the minimum natural frequency by ~4× using targeted bracing and joint stiffening (gussets), prioritizing stiffness-to-mass efficiency.</li>
+        <li>Intent: reduce resonance risk by separating structural modes from rotating-equipment excitation bands.</li>
       </ul>
     </div>
 
     <div class="card">
-      <h2>Weld Analysis + DFM</h2>
-      <ul>
-        <li>Performed AWS D1.1 weld stress analysis using forces/moments extracted from FEA.</li>
-        <li>Redesigned load paths using stiffeners instead of simply increasing weld size (cost/weight control).</li>
-        <li>Coordinated with fabrication partner to confirm CJP feasibility, access, and realistic shop processes.</li>
-      </ul>
+      <h2>Weld Verification (AWS D1.1 Method)</h2>
+      <p>
+        Welds were checked using a hand-calc workflow fed by ANSYS reaction forces/moments at weld interfaces (forces: F<sub>x</sub>, F<sub>y</sub>, F<sub>z</sub>; moments: M<sub>x</sub>, M<sub>y</sub>, M<sub>z</sub>),
+        mapping to normal, shear, bending, and torsional effects. :contentReference[oaicite:3]{index=3}
+      </p>
+
+      <p class="eqNote"><b>Fillet weld group (throat-based combined stress check):</b> :contentReference[oaicite:4]{index=4}</p>
+      <div class="eq">Allowable (example electrode):
+  τ_allow = 0.30 · S_u   (E70XX)  →  0.30 · 70 ksi = 21 ksi
+
+Geometry:
+  t = throat = 0.707 · w          (w = fillet leg size)
+  A_t = Σ(l_i · t)                 (effective throat area over weld lengths)
+
+Normal stress (on throat):
+  σ_n = σ_axial + σ_bending
+  σ_axial   = F_N / A_t
+  σ_bending = M_x / S_x  +  M_y / S_y
+
+Shear stress (on throat):
+  τ = τ_direct + τ_torsion
+  τ_direct  = V / A_t
+  τ_torsion = T · r / J            (torsion about weld-group centroid)
+
+Interaction (portfolio form used):
+  σ_eq = √(σ_n² + τ²)   ≤   τ_allow</div>
+
+      <p class="eqNote"><b>CJP / groove weld (von Mises-style equivalent):</b> :contentReference[oaicite:5]{index=5}</p>
+      <div class="eq">Equivalent stress:
+  σ_vm = √(σ_total² + 3·τ_total²)   ≤   σ_allow
+
+Where:
+  σ_total = σ_axial + σ_bending
+  τ_total = τ_direct + τ_torsion</div>
+
+      <p class="eqNote">
+        In practice: used these checks to right-size welds and (when needed) redesign load paths with stiffeners/gussets rather than only increasing weld size.
+      </p>
     </div>
 
     <div class="card">
-      <h2>Supplier Coordination</h2>
+      <h2>Supplier / Fabrication Coordination</h2>
       <ul>
-        <li>Released drawings, cut lists, and material specs with clear tolerances and acceptance expectations.</li>
-        <li>Evaluated alternate suppliers (lead time, cost, certifications) and managed delivery schedules.</li>
+        <li>Released drawings, cut lists, and material requirements with clear tolerances and acceptance expectations.</li>
+        <li>Aligned weld callouts and joint accessibility with fabrication capabilities (fit-up, process access, and realistic shop sequencing).</li>
+        <li>Supported supplier evaluation around lead time, cost, and certification constraints.</li>
       </ul>
     </div>
 
