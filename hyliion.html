@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hyliion | Containerized Energy Generator Frame</title>
 
+  <!-- KaTeX for clean, professional equation rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[
+      {left:'$$',right:'$$',display:true},
+      {left:'\\(',right:'\\)',display:false}
+    ]});"></script>
+
   <style>
     :root{
       --bg:#0a0a0a;
@@ -13,22 +22,45 @@
       --muted:#a7a7a7;
       --line:#262626;
       --hover:#1b1b1b;
-      --code:#101010;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7
+    }
     a{color:inherit}
+
     .wrap{max-width:900px;margin:0 auto;padding:24px 18px 80px}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px);z-index:10}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 0 18px;border-bottom:1px solid var(--line);
+      position:sticky;top:0;background:rgba(10,10,10,0.85);
+      backdrop-filter:blur(10px);z-index:10
+    }
     .brand{font-weight:700;letter-spacing:0.3px}
     .nav a{text-decoration:none;color:var(--muted);margin-left:14px;font-size:14px}
     .nav a:hover{color:var(--text)}
+
     h1{font-size:34px;margin:26px 0 8px;line-height:1.15}
     .sub{color:var(--muted);margin:0 0 18px}
-    .heroImg{margin:18px 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+
+    .heroImg{
+      margin:18px 0 18px;border:1px solid var(--line);
+      border-radius:14px;overflow:hidden;background:var(--card)
+    }
     .heroImg img{width:100%;height:320px;object-fit:cover;display:block}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
-    .card h2{font-size:15px;margin:0 0 10px;text-transform:uppercase;letter-spacing:0.12em}
+
+    .card{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:14px;padding:16px;margin-top:14px
+    }
+    .card h2{
+      font-size:15px;margin:0 0 10px;
+      text-transform:uppercase;letter-spacing:0.12em
+    }
     .card p,.card li{color:var(--muted);font-size:14px}
     ul{margin:8px 0 0;padding-left:18px}
 
@@ -36,26 +68,46 @@
     .kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#101010}
     .kpi b{display:block;color:var(--text);font-size:16px;margin-bottom:4px}
 
-    .eq{
-      margin-top:10px;
+    .eqCard{
       border:1px solid var(--line);
-      border-radius:12px;
-      background:var(--code);
-      padding:12px;
-      overflow:auto;
-      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      font-size:12.5px;
-      color:#d9d9d9;
-      line-height:1.55;
-      white-space:pre;
+      border-radius:14px;
+      background:#101010;
+      padding:14px 14px 10px;
+      margin-top:12px;
     }
-    .eqNote{margin:10px 0 0;color:var(--muted);font-size:13px}
+    .eqTitle{
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+    .eqMath{
+      display:flex;
+      justify-content:center;
+      overflow-x:auto;
+      padding:4px 0;
+    }
+    .eqFoot{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:13px;
+    }
 
-    .btn{display:inline-block;margin-top:14px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);text-decoration:none;background:#151515}
+    .btn{
+      display:inline-block;margin-top:14px;padding:11px 14px;
+      border-radius:10px;border:1px solid var(--line);
+      text-decoration:none;background:#151515
+    }
     .btn:hover{background:var(--hover)}
-    @media(max-width:800px){.kpis{grid-template-columns:1fr}.heroImg img{height:220px}}
+
+    @media(max-width:800px){
+      .kpis{grid-template-columns:1fr}
+      .heroImg img{height:220px}
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
 
@@ -80,12 +132,12 @@
     <div class="card">
       <h2>Impact Snapshot</h2>
       <div class="kpis">
-        <div class="kpi"><b>~40 parts eliminated</b><span>~7% reduction from a ~600-part baseline via architecture simplification</span></div>
-        <div class="kpi"><b>Localized thickness optimization</b><span>Reduced select C-channel members from 3/8&quot; to 1/8&quot; where margins allowed</span></div>
-        <div class="kpi"><b>~4× higher minimum natural frequency</b><span>Stiffness added where it mattered (bracing + gussets), not blanket thickening</span></div>
-        <div class="kpi"><b>AWS D1.1 + ANSYS-driven loads</b><span>Weld sizing checks using FEA-extracted forces and moments</span></div>
+        <div class="kpi"><b>~40 parts eliminated</b><span style="color:var(--muted);font-size:14px">~7% reduction from a ~600-part baseline via architecture simplification</span></div>
+        <div class="kpi"><b>Localized thickness optimization</b><span style="color:var(--muted);font-size:14px">Reduced select C-channel members from 3/8&quot; to 1/8&quot; where margins allowed</span></div>
+        <div class="kpi"><b>~4× higher minimum natural frequency</b><span style="color:var(--muted);font-size:14px">Stiffness added where it mattered (bracing + gussets), not blanket thickening</span></div>
+        <div class="kpi"><b>AWS D1.1 + ANSYS-driven loads</b><span style="color:var(--muted);font-size:14px">Weld sizing checks using FEA-extracted forces and moments</span></div>
       </div>
-      <p class="eqNote">Note: metrics shown are representative and rounded for portfolio context.</p>
+      <p class="eqFoot">Note: metrics shown are representative and rounded for portfolio context.</p>
     </div>
 
     <div class="card">
@@ -115,43 +167,52 @@
     </div>
 
     <div class="card">
-      <h2>Weld Verification (AWS D1.1 Method)</h2>
+      <h2>Weld Verification (AWS D1.1)</h2>
       <p>
-        Welds were checked using a hand-calc workflow fed by ANSYS reaction forces/moments at weld interfaces (forces: F<sub>x</sub>, F<sub>y</sub>, F<sub>z</sub>; moments: M<sub>x</sub>, M<sub>y</sub>, M<sub>z</sub>),
-        mapping to normal, shear, bending, and torsional effects. :contentReference[oaicite:3]{index=3}
+        Weld sizing was verified with hand calculations driven by ANSYS reaction forces and moments at weld interfaces.
+        FEA outputs were mapped into normal force <b>N</b>, shear <b>V</b>, bending moments <b>M_x, M_y</b>, and torsion <b>T</b>,
+        then checked against AWS D1.1 allowables.
       </p>
 
-      <p class="eqNote"><b>Fillet weld group (throat-based combined stress check):</b> :contentReference[oaicite:4]{index=4}</p>
-      <div class="eq">Allowable (example electrode):
-  τ_allow = 0.30 · S_u   (E70XX)  →  0.30 · 70 ksi = 21 ksi
+      <div class="eqCard">
+        <div class="eqTitle">Fillet weld basics</div>
+        <div class="eqMath">
+          $$t = 0.707\,w,\qquad A_t = t\,L_{\mathrm{eff}}$$
+        </div>
+        <div class="eqFoot">Throat <i>t</i> from fillet leg size <i>w</i>; effective throat area based on effective weld length.</div>
+      </div>
 
-Geometry:
-  t = throat = 0.707 · w          (w = fillet leg size)
-  A_t = Σ(l_i · t)                 (effective throat area over weld lengths)
+      <div class="eqCard">
+        <div class="eqTitle">Stresses from loads (weld group)</div>
+        <div class="eqMath">
+          $$\sigma = \frac{N}{A_t} + \frac{M_x}{S_x} + \frac{M_y}{S_y}\qquad
+          \tau = \frac{V}{A_t} + \frac{T\,r}{J}$$
+        </div>
+        <div class="eqFoot">Normal = axial + bending; shear = direct + torsional. Weld-group properties <i>S_x, S_y, J</i> depend on geometry.</div>
+      </div>
 
-Normal stress (on throat):
-  σ_n = σ_axial + σ_bending
-  σ_axial   = F_N / A_t
-  σ_bending = M_x / S_x  +  M_y / S_y
+      <div class="eqCard">
+        <div class="eqTitle">Combined check + allowable</div>
+        <div class="eqMath">
+          $$\sigma_{\mathrm{eq}}=\sqrt{\sigma^2+3\tau^2}\;\;\le\;\;\tau_{\mathrm{allow}},\qquad
+          \tau_{\mathrm{allow}}\approx 0.30\,F_{\mathrm{EXX}}$$
+        </div>
+        <div class="eqFoot">
+          Example: E70XX ⇒ \(F_{\mathrm{EXX}}=70\,\text{ksi}\) ⇒ \(\tau_{\mathrm{allow}}\approx 21\,\text{ksi}\).
+          Solve for weld size <i>w</i> to meet utilization targets.
+        </div>
+      </div>
 
-Shear stress (on throat):
-  τ = τ_direct + τ_torsion
-  τ_direct  = V / A_t
-  τ_torsion = T · r / J            (torsion about weld-group centroid)
+      <div class="eqCard">
+        <div class="eqTitle">CJP / groove weld (equivalent stress form)</div>
+        <div class="eqMath">
+          $$\sigma_{vm}=\sqrt{\sigma_{\mathrm{total}}^2+3\tau_{\mathrm{total}}^2}\;\;\le\;\;\sigma_{\mathrm{allow}}$$
+        </div>
+        <div class="eqFoot">Used for joints specified as CJP/groove where applicable; stresses derived from the same mapped force/moment set.</div>
+      </div>
 
-Interaction (portfolio form used):
-  σ_eq = √(σ_n² + τ²)   ≤   τ_allow</div>
-
-      <p class="eqNote"><b>CJP / groove weld (von Mises-style equivalent):</b> :contentReference[oaicite:5]{index=5}</p>
-      <div class="eq">Equivalent stress:
-  σ_vm = √(σ_total² + 3·τ_total²)   ≤   σ_allow
-
-Where:
-  σ_total = σ_axial + σ_bending
-  τ_total = τ_direct + τ_torsion</div>
-
-      <p class="eqNote">
-        In practice: used these checks to right-size welds and (when needed) redesign load paths with stiffeners/gussets rather than only increasing weld size.
+      <p class="eqFoot">
+        Portfolio note: formulas shown are representative of the workflow; proprietary joint details and exact load values are intentionally omitted.
       </p>
     </div>
 
