@@ -207,7 +207,7 @@
           <li><b>Objective:</b> keep cabinet bulk outlet air within a defined limit under continuous operation while maintaining margin to critical electronics temperature limits.</li>
           <li><b>Primary risk:</b> localized hotspots can exceed limits even when bulk cabinet air appears acceptable (distribution + recirculation effects).</li>
           <li><b>Environmental constraints:</b> filtered intake required to mitigate water/salt/particulate ingress → added system resistance and serviceability requirements.</li>
-          <li><b>Integration constraints:</b> packaging, mounting, wiring/clearance, and maintenance access (filter changeout) within a production cabinet.</li>
+          <li><b>Integration constraints:</b> airflow architecture developed within real cabinet layout boundaries, including adjacent hardware, mounting surfaces, wiring clearance, and maintenance access (filter replacement) in a production environment.</li>
         </ul>
         <div class="chips">
           <span class="chip">Reliability</span>
@@ -226,7 +226,7 @@
         <ul>
           <li><b>Thermal:</b> bulk outlet air must remain below a specified limit at worst-case ambient; critical electronics must remain below rated temperature with margin.</li>
           <li><b>Airflow:</b> deliver required flow at the true operating point (system resistance + filtration), not nameplate fan flow.</li>
-          <li><b>Ingress protection:</b> intake/exhaust placement and sealing designed to reduce splash/water ingestion risk in the operating environment.</li>
+          <li><b>Ingress protection:</b> intake and exhaust locations selected based on surrounding equipment, available clearances, and natural convection direction, favoring bottom intake and upper exhaust to support upward heat removal while avoiding interference with adjacent subsystems.</li>
           <li><b>Serviceability:</b> filters accessible for replacement and inspection; design supports maintenance without cabinet rework.</li>
         </ul>
 
@@ -264,7 +264,7 @@
         <h3 style="margin:0 0 8px; font-size:14px;">3) Fan + filter integration under ingress constraints</h3>
         <ul>
           <li>Selected and positioned intake/exhaust features to support environmental ingress goals while maintaining serviceability.</li>
-          <li>Integrated dual filtration to control particulate/splash exposure while accounting for added system resistance.</li>
+          <li>Integrated filtration to control particulate exposure while accounting for added system resistance in fan selection.</li>
           <li>Ensured the cooling architecture remains manufacturable (mounting strategy, sealing surfaces, filter changeout access).</li>
         </ul>
 
