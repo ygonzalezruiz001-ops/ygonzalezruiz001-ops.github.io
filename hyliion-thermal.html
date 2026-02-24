@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thermal Systems Architecture for LV Cabinet | Hyliion</title>
-  <meta name="description" content="Forced convection thermal design for a low-voltage cabinet in a generator platform: system curves, CFD validation, and integration under environmental constraints." />
+  <meta name="description" content="Forced convection thermal design for a low-voltage cabinet on a generator platform: fan/filter selection, system resistance modeling, plenum design, and verification planning under environmental constraints." />
 
   <style>
     :root{
@@ -70,7 +70,6 @@
       border-color:#333;
     }
 
-    /* Image block with subtle caption overlay */
     .imageBlock{
       position:relative;
       max-width:880px;
@@ -140,6 +139,17 @@
     .col h3{margin:0 0 8px; font-size:14px}
     .col p{margin:0; color:var(--muted); font-size:14px}
 
+    .callout{
+      margin-top:14px;
+      background: #101010;
+      border: 1px solid #2b2b2b;
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .callout b{color: var(--text)}
+
     .footer{
       margin-top:44px;
       padding-top:16px;
@@ -170,12 +180,13 @@
     </div>
 
     <h1>Thermal Systems Architecture for LV Cabinet</h1>
-    <p class="sub">Hyliion • Generator Platform • Forced Convection • System Curves • CFD • Environmental Filtration</p>
+    <p class="sub">Hyliion • Generator Platform • Forced Convection • Fan & Filter Selection • Plenum Design • Verification Planning</p>
 
     <p class="lede">
-      Designed a forced-convection thermal management strategy for a low-voltage (LV) control cabinet on a generator platform.
-      The work focused on keeping cabinet temperatures within industry-standard reliability limits under continuous operation,
-      while respecting tight packaging, filtration-driven pressure drop, and real-world manufacturing constraints.
+      Developed a forced-convection thermal management architecture for a low-voltage (LV) control cabinet on a generator platform.
+      The work focused on maintaining electronics reliability under worst-case ambient conditions while meeting environmental ingress,
+      filtration-driven pressure-drop, packaging, and serviceability constraints. Detailed internal layout, component list, and absolute
+      temperature/flow targets are omitted due to confidentiality.
     </p>
 
     <div class="btns">
@@ -193,17 +204,35 @@
       <h2>Problem</h2>
       <div class="panel">
         <ul>
-          <li><b>Thermal risk:</b> without forced convection, internal temperatures can exceed acceptable operating limits for control and power components.</li>
-          <li><b>Objective:</b> maintain cabinet air temperatures within reliability limits under continuous operation.</li>
-          <li><b>Environmental constraint:</b> filtered intake required for humid/marine-adjacent operation → higher system pressure drop.</li>
-          <li><b>Integration reality:</b> airflow must fit within restricted packaging while remaining serviceable and manufacturable.</li>
+          <li><b>Objective:</b> keep cabinet bulk outlet air within a defined limit under continuous operation while maintaining margin to critical electronics temperature limits.</li>
+          <li><b>Primary risk:</b> localized hotspots can exceed limits even when bulk cabinet air appears acceptable (distribution + recirculation effects).</li>
+          <li><b>Environmental constraints:</b> filtered intake required to mitigate water/salt/particulate ingress → added system resistance and serviceability requirements.</li>
+          <li><b>Integration constraints:</b> packaging, mounting, wiring/clearance, and maintenance access (filter changeout) within a production cabinet.</li>
         </ul>
         <div class="chips">
           <span class="chip">Reliability</span>
           <span class="chip">Pressure Drop</span>
           <span class="chip">Filtration</span>
-          <span class="chip">Packaging</span>
-          <span class="chip">DFM</span>
+          <span class="chip">Ingress</span>
+          <span class="chip">DFM/Integration</span>
+          <span class="chip">Hotspots</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Requirements & Constraints</h2>
+      <div class="panel">
+        <ul>
+          <li><b>Thermal:</b> bulk outlet air must remain below a specified limit at worst-case ambient; critical electronics must remain below rated temperature with margin.</li>
+          <li><b>Airflow:</b> deliver required flow at the true operating point (system resistance + filtration), not nameplate fan flow.</li>
+          <li><b>Ingress protection:</b> intake/exhaust placement and sealing designed to reduce splash/water ingestion risk in the operating environment.</li>
+          <li><b>Serviceability:</b> filters accessible for replacement and inspection; design supports maintenance without cabinet rework.</li>
+        </ul>
+
+        <div class="callout">
+          <b>Note on confidentiality:</b> Specific component part numbers, heat loads by module, airflow targets, and absolute temperature limits are intentionally not listed.
+          The focus here is the engineering workflow, conservative assumptions, and verification approach.
         </div>
       </div>
     </section>
@@ -213,38 +242,92 @@
 
       <div class="twoCol">
         <div class="col">
-          <h3>1) First-principles sizing + converged operating point</h3>
+          <h3>1) First-principles airflow sizing</h3>
           <p>
-            Built an iterative sizing workflow to compute the airflow requirement from energy balance,
-            then converged the coupled problem between airflow, pressure drop, fan power, and resulting temperature rise.
-            This avoided “assumption-based” fan sizing and produced a physically consistent operating point.
+            Sized required airflow using a steady-state energy balance on cabinet air (heat load + allowable bulk temperature rise).
+            Included fan electrical power as part of the effective thermal load where applicable, and documented modeling assumptions
+            (steady state, constant properties, negligible KE/PE).
           </p>
         </div>
 
         <div class="col">
-          <h3>2) System curve (ΔP vs V̇) using CFD, anchored by measurement</h3>
+          <h3>2) System resistance modeling (ΔP vs V̇)</h3>
           <p>
-            Developed the cabinet system resistance curve to account for internal flow restrictions and filtration losses.
-            Used CFD to capture the geometry-driven losses, and anchored the methodology using instrumentation data
-            from a prior platform configuration to ensure the modeling approach was realistic.
+            Estimated cabinet pressure drop by combining filtration losses, internal restrictions, and exit losses to form a system curve.
+            Fan selection was performed at the coupled operating point (fan curve ∩ system curve), with conservative allowances for filter loading.
+            CFD remains an optional refinement to further de-risk airflow distribution and hotspot behavior prior to full hardware build.
           </p>
         </div>
       </div>
 
       <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 8px; font-size:14px;">3) Fan selection + cabinet integration</h3>
+        <h3 style="margin:0 0 8px; font-size:14px;">3) Fan + filter integration under ingress constraints</h3>
         <ul>
-          <li>Selected the fan at the true operating point by intersecting the system curve with supplier fan performance curves.</li>
-          <li>Checked electrical power availability and thermal impact of fan power as part of the converged solution.</li>
-          <li>Updated cabinet intake/exhaust geometry to improve airflow distribution and integration within packaging limits.</li>
-          <li>Designed with serviceability and manufacturability in mind (access, mounting, filtration replacement).</li>
+          <li>Selected and positioned intake/exhaust features to support environmental ingress goals while maintaining serviceability.</li>
+          <li>Integrated dual filtration to control particulate/splash exposure while accounting for added system resistance.</li>
+          <li>Ensured the cooling architecture remains manufacturable (mounting strategy, sealing surfaces, filter changeout access).</li>
         </ul>
 
         <div class="chips">
-          <span class="chip">Fan Curves</span>
           <span class="chip">Operating Point</span>
-          <span class="chip">CFD</span>
-          <span class="chip">Integration</span>
+          <span class="chip">Fan Curves</span>
+          <span class="chip">Filters</span>
+          <span class="chip">Sealing</span>
+          <span class="chip">Packaging</span>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 8px; font-size:14px;">4) Hotspot bounding using measured correlation (MCU vs bulk air)</h3>
+        <ul>
+          <li>Used instrumented measurements from a comparable configuration with sensors placed in cabinet air and near the critical electronics.</li>
+          <li>Observed a repeatable offset between local cabinet air and MCU temperature that varied by operating mode.</li>
+          <li>Designed to the upper bound of the observed offset as a conservative basis to maintain margin to electronics temperature limits.</li>
+        </ul>
+
+        <div class="chips">
+          <span class="chip">Correlation</span>
+          <span class="chip">Margin</span>
+          <span class="chip">Hotspot Risk</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Plenum Design (In Progress)</h2>
+      <div class="panel">
+        <ul>
+          <li><b>Purpose:</b> transition from fan outlet to filter face while improving flow uniformity and minimizing added pressure loss.</li>
+          <li><b>Design intent:</b> reduce jetting and recirculation, distribute flow across the full filter area, and prevent bypass leakage around the filter.</li>
+          <li><b>Integration:</b> sealed interfaces (gaskets), robust mounting, and maintenance-friendly access for filter replacement.</li>
+          <li><b>Materials:</b> corrosion-resistant construction appropriate for the operating environment; stiffness and vibration considered.</li>
+          <li><b>Ingress:</b> geometry and sealing chosen to support environmental protection goals without compromising serviceability.</li>
+        </ul>
+
+        <div class="chips">
+          <span class="chip">Flow Distribution</span>
+          <span class="chip">Sealing</span>
+          <span class="chip">DFM</span>
+          <span class="chip">Serviceability</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Verification Plan (Planned)</h2>
+      <div class="panel">
+        <ul>
+          <li><b>Instrumentation:</b> inlet/outlet air temperatures, internal air mapping near suspected hot zones, and MCU temperature via onboard sensor or surface thermocouple.</li>
+          <li><b>Test conditions:</b> worst-case ambient and load cases; repeat runs at multiple operating modes; include filtration loading sensitivity.</li>
+          <li><b>Acceptance:</b> demonstrate compliance with bulk outlet air requirement and maintain margin to critical electronics temperature limits.</li>
+          <li><b>Optional CFD:</b> used prior to full build if hotspot margin is tight or to refine airflow distribution and internal temperature gradients.</li>
+        </ul>
+
+        <div class="chips">
+          <span class="chip">Test Plan</span>
+          <span class="chip">Thermocouples</span>
+          <span class="chip">Air Mapping</span>
+          <span class="chip">CFD (Optional)</span>
         </div>
       </div>
     </section>
@@ -253,11 +336,11 @@
       <h2>Skills Demonstrated</h2>
       <div class="panel">
         <ul>
-          <li>Thermal systems architecture and forced convection sizing</li>
-          <li>Iterative energy-balance modeling (converged airflow + fan power coupling)</li>
-          <li>CFD-based system curve development and correlation mindset</li>
-          <li>Fan selection at operating point under filtration-driven pressure drop</li>
-          <li>Electro-mechanical integration within packaging and DFM constraints</li>
+          <li>Forced convection sizing via first-principles energy balance</li>
+          <li>Fan selection at the true operating point using system resistance modeling</li>
+          <li>Design integration under filtration, ingress, packaging, and serviceability constraints</li>
+          <li>Correlation mindset for bounding hotspots using instrumented measurements</li>
+          <li>Verification planning and risk-reduction (CFD optional, instrumentation-driven testing)</li>
         </ul>
       </div>
     </section>
