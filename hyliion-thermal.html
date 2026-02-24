@@ -313,30 +313,30 @@
         <div class="col">
           <h3>2) System resistance modeling (ΔP vs V̇)</h3>
           <p>
-            Estimated cabinet pressure drop by combining filtration losses, internal restrictions, and exit losses to form a system curve.
-            Fan selection was performed at the coupled operating point (fan curve ∩ system curve), with conservative allowances for filter loading.
-            CFD remains an optional refinement to further de-risk airflow distribution and hotspot behavior prior to full hardware build.
+            Built a simple system model using <b>(a) filter pressure drop</b> taken from vendor data plotted versus <i>face velocity</i>
+            (which inherently accounts for filter area), plus <b>(b) cabinet/internal pressure drop</b> measured experimentally using differential pressure sensors.
+            Fan selection was performed at the coupled operating point (fan curve ∩ total system curve), with conservative allowances for filter loading.
           </p>
 
           <div class="eq">
             <div class="eqTitle">Equations used</div>
             \[
-              \Delta P_{sys}(\dot{V}) = \Delta P_{filter}(\dot{V}) + \Delta P_{minor}(\dot{V}) + \Delta P_{friction}(\dot{V})
+              \Delta P_{total}(\dot{V}) = \Delta P_{filter}(V_{face}) + \Delta P_{cabinet}(\dot{V})
             \]
             \[
-              \Delta P_{minor} \approx \sum K_i\left(\frac{\rho}{2}\right)\left(\frac{\dot{V}}{A_i}\right)^2
+              \text{Face velocity: }\;V_{face}=\frac{\dot{V}}{A_{filter}}
             \]
             \[
-              \Delta P_{friction} \approx \sum \left(f\,\frac{L}{D}\right)\left(\frac{\rho}{2}\right)\left(\frac{\dot{V}}{A}\right)^2
+              \Delta P_{filter}=\;f(V_{face})\quad\text{(from vendor curve: pressure drop vs face velocity)}
             \]
             \[
-              \text{Operating point: }\;\Delta P_{fan}(\dot{V}^*)=\Delta P_{sys}(\dot{V}^*)
+              \text{Operating point: }\;\Delta P_{fan}(\dot{V}^*)=\Delta P_{total}(\dot{V}^*)
             \]
             \[
               \Delta P_{filter,dirty} \approx SF \cdot \Delta P_{filter,clean}
             \]
             <div class="eqNote">
-              \(K_i\) = loss coefficients (bends, contractions, screens, exits). \(SF\) = filter loading safety factor (e.g., “dirty filter” allowance).
+              \(\Delta P_{cabinet}\) was obtained from test measurements (ΔP sensors across the cabinet/internal path). \(SF\) = filter loading safety factor (“dirty filter” allowance).
             </div>
           </div>
         </div>
@@ -373,10 +373,7 @@
             T_{MCU} \approx T_{bulk} + \Delta T_{offset}
           \]
           \[
-            T_{MCU,design} = T_{bulk,design} + \Delta T_{offset,max}
-          \]
-          \[
-            \text{Margin} = T_{MCU,limit} - T_{MCU,design}
+            \text{Margin} = T_{MCU,limit} - \left(T_{bulk,design} + \Delta T_{offset,max}\right)
           \]
           <div class="eqNote">
             \(\Delta T_{offset,max}\) is the conservative bound observed across operating modes (captures hotspot risk from non-uniform flow / recirculation).
@@ -401,19 +398,6 @@
           <li><b>Materials:</b> corrosion-resistant construction appropriate for the operating environment; stiffness and vibration considered.</li>
           <li><b>Ingress:</b> geometry and sealing chosen to support environmental protection goals without compromising serviceability.</li>
         </ul>
-
-        <div class="eq">
-          <div class="eqTitle">Useful relationships (design checks)</div>
-          \[
-            \Delta P_{added} \approx K_{added}\left(\frac{\rho}{2}\right)\left(\frac{\dot{V}}{A}\right)^2
-          \]
-          \[
-            \text{Face velocity: } V_{face}=\frac{\dot{V}}{A_{filter}}
-          \]
-          <div class="eqNote">
-            Practically: keep \(K_{added}\) small (avoid sharp turns / sudden contractions), and reduce \(V_{face}\) spikes to improve filter utilization and limit pressure loss.
-          </div>
-        </div>
 
         <div class="chips">
           <span class="chip">Flow Distribution</span>
@@ -446,7 +430,7 @@
             \text{Pass if: } T_{bulk,out}\le T_{bulk,limit}\;\;\text{and}\;\; T_{MCU}\le T_{MCU,limit}\;(\text{with margin})
           \]
           <div class="eqNote">
-            You can use measured \(\dot{V}\) (or inferred from fan operating point + \(\Delta P\)) to cross-check that the cabinet is running at the intended operating point.
+            Measured \(\dot{V}\) (or inferred from fan operating point + \(\Delta P\)) can be used to confirm the cabinet is running at the intended operating point.
           </div>
         </div>
 
